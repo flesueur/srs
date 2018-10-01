@@ -20,7 +20,7 @@ Quelques actualités de la sécurité 2018
 * Facebook, 50mio de comptes compromis, utilisé en login tiers
 * Intel management engine password bypass, AMT, null digest password (pas null pass, null digest), accès caché de l'OS !
 * Meltdown/Spectre, accès caché de l'OS
-* Cryptominer JS, coinhive, TC ;-) (_sécu = ? Utilisation de ressources non prévues/souhaitées, zone grise)
+* Cryptominer JS, coinhive, TC ;-) (_sécu = ? Utilisation de ressources non prévues/souhaitées, zone grise_)
 * Nations-Unies, google dorking, (mdp accessibles sur github/trello puis accès aux ressources)
 * DDoS : concurrence minecraft, racket e-commerce
 * VPNFilter, Mirai++
