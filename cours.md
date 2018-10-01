@@ -17,13 +17,13 @@ Introduction
 Quelques actualités de la sécurité 2018
 ------------------------------
 
-* Facebook, 50mio de comptes compromis, utilisé en login tiers
-* Intel management engine password bypass, AMT, null digest password (pas null pass, null digest), accès caché de l'OS !
-* Meltdown/Spectre, accès caché de l'OS
-* Cryptominer JS, coinhive, TC ;-) (_sécu = ? Utilisation de ressources non prévues/souhaitées, zone grise_)
-* Nations-Unies, google dorking, (mdp accessibles sur github/trello puis accès aux ressources)
-* DDoS : concurrence minecraft, racket e-commerce
-* VPNFilter, Mirai++
+* Facebook, 50mio de comptes compromis, utilisé en login tiers [details](https://newsroom.fb.com/news/2018/09/security-update/#details)
+* Intel management engine password bypass, AMT, null digest password (pas null pass, null digest), accès caché de l'OS ! [details](https://www.tenable.com/plugins/nessus/97999)
+* Meltdown/Spectre, accès caché de l'OS [details](https://www.ovh.com/fr/blog/failles-de-securite-spectre-meltdown-explication-3-failles-mesures-correctives-public-averti/)
+* Cryptominer JS, coinhive, TC ;-) (_sécu = ? Utilisation de ressources non prévues/souhaitées, zone grise_) [details](https://blog.malwarebytes.com/cybercrime/2018/02/state-malicious-cryptomining/)
+* Nations-Unies, google dorking, (mdp accessibles sur github/trello puis accès aux ressources) [details](https://theintercept.com/2018/09/24/united-nations-trello-jira-google-docs-passwords/)
+* DDoS toujours : concurrence minecraft, racket e-commerce [details](https://www.ovh.com/fr/blog/rapport-attaques-ddos-observees-par-ovh-en-2017/)
+* VPNFilter, Mirai++ [details](https://blog.talosintelligence.com/2018/05/VPNFilter.html)
 
 
 Quelques actualités de la sécurité 2017
