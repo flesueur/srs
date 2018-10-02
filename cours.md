@@ -17,7 +17,7 @@ Introduction
 Quelques actualités de la sécurité 2018
 ------------------------------
 
-* Facebook, 50mio de comptes compromis, utilisé en login tiers [details](https://newsroom.fb.com/news/2018/09/security-update/#details)
+* Facebook, 50mio de comptes compromis, utilisé en login tiers. Surveillance home-made, logs [details](https://newsroom.fb.com/news/2018/09/security-update/#details)
 * Intel management engine password bypass, AMT, null digest password (pas null pass, null digest), accès caché de l'OS ! [details](https://www.tenable.com/plugins/nessus/97999)
 * Meltdown/Spectre, accès caché de l'OS [details](https://www.ovh.com/fr/blog/failles-de-securite-spectre-meltdown-explication-3-failles-mesures-correctives-public-averti/)
 * Cryptominer JS, coinhive, TC ;-) (_sécu = ? Utilisation de ressources non prévues/souhaitées, zone grise_) [details](https://blog.malwarebytes.com/cybercrime/2018/02/state-malicious-cryptomining/)
