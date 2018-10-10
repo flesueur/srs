@@ -2,9 +2,13 @@
 
 _François Lesueur ([francois.lesueur@insa-lyon.fr](mailto:francois.lesueur@insa-lyon.fr))_
 
-Ce TP sera réalisé dans l'infrastructure MI-LXC, disponible [ici](https://github.com/flesueur/mi-lxc) (nécessite un Linux en root) ou dans la VM "debian-stretch" disponible en salle de TP (`/machines_virtuelles/secu_vms/master/debian-stretch.sh`)
+Ce TP sera réalisé dans l'infrastructure MI-LXC, disponible [ici](https://github.com/flesueur/mi-lxc) (nécessite un Linux en root) ou dans la VM "tp-sec-debian" disponible en salle de TP (`/machines_virtuelles/secu_vms/master/tp-sec-debian.sh`, debian/debian et root/root). L'infrastructure déployée simule plusieurs postes dont un SI d'entreprise (firewall, DMZ, intranet, authentification centralisée, serveur de fichiers, quelques postes de travail interne), une machine d'attaquant (hacker) et quelques autres servant à l'intégration de l'ensemble. La compréhension plus fine du SI de l'entreprise ciblée fait partie des objectifs du TP.
 
-Une fois l'environnement démarré, la seule machine à utiliser est évidemment celle du hacker (`./mi-lxc display hacker`).
+Pour une utilisation sur un poste personnel depuis le dépôt github, la procédure est expliquée dans le README.md.
+
+Pour une utilisation dans la VM "tp-sec-debian", MI-LXC est déjà installé et l'infrastructure déployée. Il faut passer root puis aller dans le dossier `/root/mi-lxc`. Ensuite, `./mi-lxc.py addbridges`, `./mi-lxc.py start`.
+
+Une fois l'environnement démarré, la seule machine à utiliser est évidemment celle du hacker (`./mi-lxc.py display hacker`).
 
 
 Déroulement général
@@ -25,7 +29,7 @@ Le fil proposé ne couvre bien sûr pas l'ensemble des possibilités mais vise �
 Préparation du cheval de Troie
 ==============================
 
-Pour contrôler la machine du commercial, nous allons créer puis transmettre un cheval de Troie. Notre but est d'obtenir un \emph{shell} sur la machine du commercial afin de l'utiliser comme pivot. Cependant, comme le firewall n'autorise pas les connexions vers l'intérieur de l'entreprise, nous allons plus spécifiquement envoyer un reverse-shell : c'est la machine du commercial qui initiera la connexion vers la machine du hacker.
+Pour contrôler la machine du commercial, nous allons créer puis transmettre un cheval de Troie. Notre but est d'obtenir un shell sur la machine du commercial afin de l'utiliser comme pivot. Cependant, comme le firewall n'autorise pas les connexions vers l'intérieur de l'entreprise, nous allons plus spécifiquement envoyer un reverse-shell : c'est la machine du commercial qui initiera la connexion vers la machine du hacker.
 
 Le code exemple suivant est disponible sur la machine du hacker (`~/tp/intrusion/trojan.sh`) :
 ```
@@ -79,4 +83,4 @@ Pivotez vers la machine hébergeant les données ciblées. Vous pouvez ensuite u
 Bonus
 =====
 
-Il existe un chemin d'attaque, qui sera plus difficile à contrôle côté firewall, qui rebondit par la machine `dev`...
+Il existe un chemin d'attaque, qui sera plus difficile à contrôler côté firewall, qui rebondit par la machine `dev`...
