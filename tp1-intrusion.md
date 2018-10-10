@@ -42,7 +42,7 @@ done
 
 * Étudiez ce petit script, son fonctionnement, le programme nc (netcat). Pourquoi y a-t-il une boucle infinie ?
 * Configurez et manipulez ce script en local pour ouvrir un reverse-shell avec vous-mêmes.
-
+* Il existe plusieurs façons d'améliorer le shell obtenu (interactivité, gestion Ctrl-C, sortie d'erreur, autocomplétion, etc.), vous pouvez par exemple remplacer nc par socat comme expliqué [ici](https://artkond.com/2017/03/23/pivoting-guide/#beutifying-your-web-shell)
 
 
 Altération du wiki
