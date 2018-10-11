@@ -48,7 +48,7 @@ done
 Altération du wiki
 ==================
 
-Le wiki est accessible publiquement mais une authentification est nécessaire pour lire et écrire. Vous disposez dans le dossier `/home/debian/tp/intrusion` d'un script pour tenter de _bruteforcer_ l'authentification. Étudiez son fonctionnement puis tentez de découvrir un accès. Pour vous aider, des listes de mots de passes communs sont disponibles sur internet, un dictionnaire au format adapté au script fourni est proposé [ici](passwords.txt). À partir de cet accès, créez une page crédible (mise à jour, installation d'un logiciel, etc.), intégrant le `.sh` que vous aurez préparé comme reverse-shell.
+Le wiki est accessible publiquement mais une authentification est nécessaire pour lire et écrire. Vous disposez dans le dossier `/home/debian/tp/intrusion` d'un script pour tenter de _bruteforcer_ l'authentification. Étudiez son fonctionnement puis tentez de découvrir un accès. Pour vous aider, des listes de mots de passes communs sont disponibles sur internet ([Wikipedia](https://en.wikipedia.org/wiki/Wikipedia:10,000_most_common_passwords)), un dictionnaire au format adapté au script fourni est proposé [ici](passwords.txt). À partir de cet accès, créez une page crédible (mise à jour, installation d'un logiciel, etc.), intégrant le `.sh` que vous aurez préparé comme reverse-shell.
 
 Conseils : les comptes d'administration sont souvent root, admin ou administrator et des listes de mots de passe communs sont disponibles sur internet.
 
