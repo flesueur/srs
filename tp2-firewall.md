@@ -78,9 +78,9 @@ Netfilter permet le suivi des connexions via le module state (firewall _stateful
 
 Le module state définit plusieurs états possibles pour les flux réseaux, dont :
 
-	* NEW : c'est une nouvelle connexion
-	* ESTABLISHED : cette connexion est déjà connue (elle est passée par l'état NEW il y a peu de temps)
-	* RELATED : cette connexion est liée ou dépendante d'une connexion déjà ESTABLISHED. Attention, seul le premier paquet d'une connexion peut être RELATED, les suivants sont ESTABLISHED. Essentiellement utilisé pour le protocole FTP.
+* NEW : c'est une nouvelle connexion
+* ESTABLISHED : cette connexion est déjà connue (elle est passée par l'état NEW il y a peu de temps)
+* RELATED : cette connexion est liée ou dépendante d'une connexion déjà ESTABLISHED. Attention, seul le premier paquet d'une connexion peut être RELATED, les suivants sont ESTABLISHED. Essentiellement utilisé pour le protocole FTP.
 
 Créez une règle pour autoriser, en sortie du Firewall, uniquement les réponses à des connexions SSH entrantes.
 
