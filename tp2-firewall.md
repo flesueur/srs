@@ -91,7 +91,7 @@ Mise en place d'une politique de sécurité réseau
 Spécification
 -------------
 
-Décrivez sur papier une politique de sécurité réseau raisonnable pour le SI complet (segmentation en zones et autorisations spécifiques entre ces zones). À vous d'explorer le SI à partir des éléments suivants :
+L'objectif d'une politique de sécurité réseau est de limiter les services accessibles depuis l'extérieur (approche historique) ainsi que de segmenter le réseau interne en zones distinctes (avec autorisations limitées entre ces zones, afin de limiter les risques de propagation/pivot). Décrivez sur papier une politique de sécurité réseau raisonnable pour le SI complet. À vous d'explorer le SI à partir des éléments suivants :
 
 * DMZ fournit un ensemble de services à l'interface entre le SI et le reste du monde
 * NIS fournit une authentification centralisée, nécessaire à tous les postes du SI (dont la DMZ)
