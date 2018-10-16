@@ -119,6 +119,10 @@ Buts
 
 La terminologie est floue !
 
+
+Axes d'étude
+------------
+
 Inspecter des paquets selon les axes d'étude :
 
 * Filtre/Alerte :
