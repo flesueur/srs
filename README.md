@@ -20,7 +20,7 @@ Pour interagir/discuter/commenter/poser des questions en dehors des heures de co
 
 Les notes de CM : [CM](cours.md)
 
-Les TP : [TP1 (Intrusion)](tp1-intrusion.md) | [TP2 (Firewall)](tp2-firewall.md) 
+Les TP : [TP1 (Intrusion)](tp1-intrusion.md) / [TP2 (Firewall)](tp2-firewall.md) 
 
 Les articles des années précédentes : [2017](https://medium.com/insa-tc/secu2017/home)
 
