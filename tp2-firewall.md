@@ -127,7 +127,7 @@ Implémentez votre matrice de flux sur la machine firewall. Vous aurez besoin de
 
 __Attention : Selon le plan de réseau retenu, il faudra peut-être mettre à jour les IP/masques sur la machine firewall. Dans ce cas, il faut typiquement `̀ifconfig eth1 down ; ifconfig eth1 <nouvelle ip>/<nouveau masque>`__
 
-	<!-- * Découvrir quel est le nom de cette carte réseau côté hôte : `./mi-lxc.py shownics <nom_du_conteneur>` (exemple de nom du conteneur : "dmz")
+<!-- * Découvrir quel est le nom de cette carte réseau côté hôte : `./mi-lxc.py shownics <nom_du_conteneur>` (exemple de nom du conteneur : "dmz")
 	* La débrancher du bridge actuel : `brctl delif <ancien_bridge> <nom_carte_reseau>`
 	* La rebrancher sur le nouveau bridge : `brctl addif <nouveau_bridge> <nom_carte_reseau>` -->
 
