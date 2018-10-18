@@ -6,9 +6,9 @@ Ce TP sera réalisé dans l'infrastructure MI-LXC, disponible [ici](https://gith
 
 Pour une utilisation sur un poste personnel depuis le dépôt github, la procédure est expliquée dans le README.md.
 
-Pour une utilisation dans la VM "tp-sec-debian", MI-LXC est déjà installé et l'infrastructure déployée. Il faut passer root puis aller dans le dossier `/root/mi-lxc`. Ensuite, `./mi-lxc.py start`.
+Pour une utilisation dans la VM "tp-sec-debian", MI-LXC est déjà installé et l'infrastructure déployée. Il faut passer root puis aller dans le dossier `/root/mi-lxc`. Ensuite, `git pull` (pour récupérer les dernières modifications...) puis `./mi-lxc.py start`.
 
-Une fois l'environnement démarré, le firewall est à configurer sur la machine Firewall. Vous devrez travailler en root (mot de passe : root) pendant tout le TP (seul root est habilité à manipuler le pare-feu).
+Une fois l'environnement démarré, le firewall est à configurer sur la machine Firewall (`./mi-lxc.py attach firewall`). Vous devrez travailler en root (mot de passe : root) pendant tout le TP (seul root est habilité à manipuler le pare-feu).
 
 Avant de commencer le TP, vous devez lire le chapitre [Netfilter](https://fr.wikibooks.org/wiki/Administration_r%C3%A9seau_sous_Linux/Netfilter) du Wikibook "Administration Réseau sous Linux".
 
@@ -92,13 +92,14 @@ Mise en place d'une politique de sécurité réseau
 Spécification
 -------------
 
-L'objectif d'une politique de sécurité réseau est de limiter les services accessibles depuis l'extérieur (approche historique) ainsi que de segmenter le réseau interne en zones distinctes (avec autorisations limitées entre ces zones, afin de limiter les risques de propagation/pivot). Décrivez sur papier une politique de sécurité réseau raisonnable pour le SI complet. À vous d'explorer le SI à partir des éléments suivants :
+L'objectif d'une politique de sécurité réseau est de limiter les services accessibles depuis l'extérieur (approche historique) ainsi que de segmenter le réseau interne en zones distinctes (avec autorisations limitées entre ces zones, afin de limiter les risques de propagation automatique/pivot). Décrivez sur papier une politique de sécurité réseau raisonnable pour le SI complet. À vous d'explorer le SI à partir des éléments suivants :
 
 * DMZ fournit un ensemble de services à l'interface entre le SI et le reste du monde
 * NIS fournit une authentification centralisée, nécessaire à tous les postes du SI (dont la DMZ)
 * Intranet fournit des applications internes, non accessibles au reste du monde
 * Filer héberge un partage de fichier qui doit être accessible à tous les postes clients
 * Commercial, Dev et Admin sont des postes client. Le commercial doit pouvoir accéder au site web intranet, le développeur doit pouvoir mettre à jour cet intranet et l'admin doit pouvoir administrer l'ensemble du parc
+* Les noms des conteneurs peuvent être affichés avec `./mi-lxc.py` (sans paramètres), les machines hacker, home et backbone représentent le "reste du monde" (WAN)
 
 La commande `netstat -lnp` permet d'afficher les ports en écoute sur une machine donnée. Le serveur NIS a besoin de rendre accessibles ypserv et rpcbind.
 
@@ -112,17 +113,21 @@ Implémentation
 
 Implémentez votre matrice de flux sur la machine firewall. Vous aurez besoin des quelques manipulations suivantes :
 
-* Pour créer une zone, vous devez y associer un bridge (switch virtuel). Sur la machine hôte, `brctl addbr <nom_du_bridge>`
+* Pour créer une zone, vous devez y associer un bridge (switch virtuel). Sur la machine hôte :
+	* `brctl addbr <nom_du_bridge>`
+	* `ip link set dev <nom_du_bridge> up`
 * Pour rebrancher une carte réseau d'un conteneur sur un autre bridge, il faut sur l'hôte :
-	* Découvrir quel est le nom de cette carte réseau côté hôte : `./mi-lxc.py shownics <nom_du_conteneur>` (exemple de nom : "hacker")
+	* Découvrir quel est le nom de cette carte réseau côté hôte : `./mi-lxc.py shownics <nom_du_conteneur>` (exemple de nom du conteneur : "dmz")
 	* La débrancher du bridge actuel : `brctl delif <ancien_bridge> <nom_carte_reseau>`
 	* La rebrancher sur le nouveau bridge : `brctl addif <nouveau_bridge> <nom_carte_reseau>`
 * Pour créer un nouvelle carte réseau dans un conteneur (typiquement sur Firewall), il faut sur l'hôte :
 	* Créer une carte virtuelle : `ip link add name <nom_cote_hote> type veth peer name <nom_temporaire>`
 	* L'activer : `ip link set dev <nom_cote_hote> up`
 	* L'ajouter au bridge : `brctl addif <bridge> <nom_cote_hote>`
-	* L'associer au conteneur : `lxc-device -n <nom_du_conteneur> add <nom_temporaire> <nom_dans_le_conteneur>`
-	* Puis la configurer dans le conteneur (up, adresse IP)
+	* L'associer au conteneur : `./mi-lxc.py addnic <nom_du_conteneur> <nom_temporaire> <nom_dans_le_conteneur>`
+	* Puis la configurer dans le conteneur (par exemple `ifconfig <nom_dans_le_conteneur> 192.168.1.1/24`)
+
+__Attention : Selon le plan de réseau retenu, il faudra peut-être mettre à jour les IP/masques sur la machine firewall. Dans ce cas, il faut typiquement `̀ifconfig eth1 down ; ifconfig eth1 <nouvelle ip>/<nouveau masque>`__
 
 
 Évaluation
@@ -134,7 +139,7 @@ Implémentez votre matrice de flux sur la machine firewall. Vous aurez besoin de
 Contournement de la politique
 -----------------------------
 
-Vous souhaitez fournir un accès vers un serveur interne de prototypage (intranet) à un client externe. Vous allez créer un tunnel pour contourner la politique de sécurité. Vous disposez pour cela des machines "dev" (votre poste de travail interne) et "Home" (une machine extérieure, à votre domicile).
+Vous souhaitez fournir un accès vers le serveur interne de prototypage (intranet) à un client externe. Vous allez créer un tunnel pour contourner la politique de sécurité. Vous disposez pour cela des machines "dev" (votre poste de travail interne) et "Home" (une machine extérieure, à votre domicile).
 
 Côté home :
 ```	
@@ -166,4 +171,4 @@ FTP
 
 FTP, comme quelques autre protocoles, présente des difficultés particulières pour les firewall. En effet, la partie contrôle de FTP se passe sur une connexion (et un port) distinct de la partie données. Les firewalls modernes savent créer le lien entre ces deux connexions pour y appliquer un contrôle adapté.
 
-Un serveur FTP est installé dans la DMZ, configurez le firewall pour permettre son usage depuis une machine externe au SI. Attention, le FTP demande une connexion avec un utilisateur existant, par exemple debian/debian.
+Un serveur FTP est installé dans la DMZ, configurez le firewall pour permettre son usage (transfert de fichiers) depuis une machine externe au SI. Attention, le FTP demande une connexion avec un utilisateur existant, par exemple debian/debian.
