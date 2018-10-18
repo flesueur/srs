@@ -117,9 +117,6 @@ Implémentez votre matrice de flux sur la machine firewall. Vous aurez besoin de
 	* `brctl addbr <nom_du_bridge>`
 	* `ip link set dev <nom_du_bridge> up`
 * Pour rebrancher une carte réseau d'un conteneur sur un autre bridge, il faut sur l'hôte :
-	<!-- * Découvrir quel est le nom de cette carte réseau côté hôte : `./mi-lxc.py shownics <nom_du_conteneur>` (exemple de nom du conteneur : "dmz")
-	* La débrancher du bridge actuel : `brctl delif <ancien_bridge> <nom_carte_reseau>`
-	* La rebrancher sur le nouveau bridge : `brctl addif <nouveau_bridge> <nom_carte_reseau>` -->
 	* `./mi-lxc.py switchnic <nom_du_conteneur> <nouveau bridge>`
 * Pour créer un nouvelle carte réseau dans un conteneur (typiquement sur Firewall), il faut sur l'hôte :
 	* Créer une carte virtuelle : `ip link add name <nom_cote_hote> type veth peer name <nom_temporaire>`
@@ -130,6 +127,9 @@ Implémentez votre matrice de flux sur la machine firewall. Vous aurez besoin de
 
 __Attention : Selon le plan de réseau retenu, il faudra peut-être mettre à jour les IP/masques sur la machine firewall. Dans ce cas, il faut typiquement `̀ifconfig eth1 down ; ifconfig eth1 <nouvelle ip>/<nouveau masque>`__
 
+	<!-- * Découvrir quel est le nom de cette carte réseau côté hôte : `./mi-lxc.py shownics <nom_du_conteneur>` (exemple de nom du conteneur : "dmz")
+	* La débrancher du bridge actuel : `brctl delif <ancien_bridge> <nom_carte_reseau>`
+	* La rebrancher sur le nouveau bridge : `brctl addif <nouveau_bridge> <nom_carte_reseau>` -->
 
 Évaluation
 ----------
