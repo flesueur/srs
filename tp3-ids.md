@@ -149,19 +149,3 @@ disable=false
 
 Enfin, relancez prelude-correlator. Une documentation plus complète est disponible [ici](https://www.prelude-siem.org/projects/prelude/wiki/PreludeCorrelator). YOLO !
 
-
-
-
-
-===============================
-
-
-Notes :
-OSSEC : changer les chemins vers les logs apache, active response, regle pour localcheck d'un dossier (https://ossec-docs.readthedocs.io/en/latest/faq/syscheck.html#why-aren-t-new-files-creating-an-alert), enlever les autres. Détecte les 403 + BF
-Suricata : apt-get, alert http any any -> any any (msg:"doku"; flow:established; sid:2721022; http_response_line; content:"403"; rev:1;)
-, ajout local.rules au suricata.conf
-cp /lib/systemd/system/suricata.service  /etc/systemd/system/suricata.service
-s/--af-packet/-q0
-
-http_stat_code
-https://suricata.readthedocs.io/en/suricata-4.0.5/rules/http-keywords.html
