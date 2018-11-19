@@ -21,6 +21,7 @@ Yakafokon
 
 Déployez cette stratégie sur le SI. Les logiciels sont pré-installés mais il faut :
 
+* configurer les outils
 * créer les règles adaptées (règles vides au départ) ;
 * connecter les sondes à prelude-manager ;
 * créer le script de corrélation adapté.
@@ -52,7 +53,7 @@ Les logiciels suivants sont pré-installés :
 Suricata (NIDS)
 ---------------
 
-Suricata est un IDPS réseau qui utilise le même format de règles que Snort. Il est installé sur le Firewall. Sa configuration est dans `/etc/suricata/suricata-debian.yaml` et nous allons utiliser le fichier de règles `/etc/suricata/rules/local.rules`. Vous pourrez visualiser le fichier de log `/var/log/suricata/fast.log`.
+Suricata est un IDPS réseau qui utilise le même format de règles que Snort. Il est installé sur le Firewall. Sa configuration est dans `/etc/suricata/suricata.yaml` et nous allons utiliser le fichier de règles `/etc/suricata/rules/local.rules`. Vous pourrez visualiser le fichier de log `/var/log/suricata/fast.log`.
 
 La règle Snort
 ```
@@ -66,7 +67,7 @@ signifie par exemple que :
 * Le log affichera "Waldo's here" s'il y a une correspondance
 * alert peut être remplacé par drop pour jeter le paquet au lieu de le journaliser
 * Le sid est un identifiant de règle, _il doit être unique_
-* Les règles peuvent être composées de nombreux éléments (contenu, taille, expressions régulières, etc. Tout est ici : [Règles Suricata](https://suricata.readthedocs.io/en/latest/rules/index.html). `http_stat_code` permet par exemple de surveiller le code de retour HTTP. <!-- \url{http://manual.snort.org/node32.html}) -->
+* Les règles peuvent être composées de nombreux éléments (contenu, taille, expressions régulières, etc.). Tout est ici : [Règles Suricata](https://suricata.readthedocs.io/en/latest/rules/index.html). `http_stat_code` permet par exemple de surveiller le code de retour HTTP. <!-- \url{http://manual.snort.org/node32.html}) -->
 
 Lisez les règles présentes dans le fichier `local.rules`. Déclenchez la règle "COMMUNITY WEB-MISC Test Script Access" en accédant au serveur web de la DMZ. La requête est-elle exécutée avec succès ?
 
@@ -98,7 +99,7 @@ OSSEC (HIDS)
 
 OSSEC est un HIDS installé sur la machine DMZ. Il permet notamment de surveiller les logs (dont accès/refus d'accès du serveur web) et les fichiers présents sur la machine. Sa configuration se trouve dans `/var/ossec/etc/ossec.conf`.
 
-La partie `syscheck` est responsable de surveiller les fichiers présents (doc [ici](https://ossec.github.io/docs/manual/syscheck/index.html), FAQ [ici](https://www.ossec.net/docs/faq/syscheck.html#why-aren-t-new-files-creating-an-alert) avec la règle à ajouter impérativement), il est aussi possible d'analyser les logs (doc [ici](https://ossec.github.io/docs/manual/monitoring/index.html)). Attention pour syscheck, la surveillance d'apparition de nouveaux fichiers (non présente par défaut, il faut ajouter une option et une règle, tout est détaillé sur la page de doc) nécessite de désactiver `realtime`. Pour utiliser syscheck, il faut attendre que la surveillance soit prête (cela prend un certain temps au démarrage), à surveiller dans `/var/ossec/logs/ossec.log`. Les alertes sont ensuite dans `/var/ossec/logs/alerts/alerts.log`. Chaque alerte contient un identifiant de règle, qui permet de retrouver la règle originale dans les fichiers `/var/ossec/rules/*`
+La partie `syscheck` est responsable de surveiller les fichiers présents (doc [ici](https://ossec.github.io/docs/manual/syscheck/index.html), FAQ [ici](https://www.ossec.net/docs/faq/syscheck.html#why-aren-t-new-files-creating-an-alert) avec la règle à ajouter impérativement dans un <group>), il est aussi possible d'analyser les logs (doc [ici](https://ossec.github.io/docs/manual/monitoring/index.html)). Attention pour syscheck, la surveillance d'apparition de nouveaux fichiers (non présente par défaut, il faut ajouter une option et une règle, tout est détaillé sur la page de doc) nécessite de désactiver `realtime` explicitement. Pour utiliser syscheck, il faut attendre que la surveillance soit prête (cela prend un certain temps au démarrage), à surveiller dans `/var/ossec/logs/ossec.log`. Les alertes sont ensuite dans `/var/ossec/logs/alerts/alerts.log`. Chaque alerte contient un identifiant de règle, qui permet de retrouver la règle originale dans les fichiers `/var/ossec/rules/*`. Il est possible d'utiliser `service ossec restart` pour déclencher un re-scan du système.
 
 <!-- Pour surveiller les fichiers de log, il convient de modifier dans `ossec.conf` le chemin des logs apache (ils sont dans `/var/log/apache2/`).
 -->
