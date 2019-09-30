@@ -105,6 +105,7 @@ Systèmes fondamentalement non sûrs donc côté infra :
 * défense en profondeur
 * cloisonnement
 * surveillance
+* partage
 * patch management
 * La sécurité n'est pas une liste d'outils ! éviter la collection ([HalvarFlake blackhat ASIA 2017](https://www.youtube.com/watch?v=PLJJY5UFtqY)), les outils complexes et privilégiés.
 
