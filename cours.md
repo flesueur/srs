@@ -77,11 +77,10 @@ Classes d'attaques
 
 Sécurité = Confidentialité, Intégrité, Disponibilité
 
-
-* Logiciel : RCE, élévation de privilèges, WEB, natif, fautes logiques : vivre dans l'insécurité
 * Réseau
 	* Passif (écoute)
 	* Actif : MitM, être sur le chemin (physique, ethernet ARP spoof, IP rogue DHCP) (NSA, FAI, INSA, attaque équipement sur la route, attaque sur l'hôte)
+* Logiciel : RCE, élévation de privilèges, WEB, natif, fautes logiques : vivre dans l'insécurité
 * Social engineering (pas la faute de l'utilisateur !) : voler des accès, phishing de qualité, passwords, carte de crédit. De grossier à ciblé, utilisation de facebook pour connaître les amis, ceux qui sont en vacance, où, etc. De beaux site en https avec une petite typo. Mail spoofing. Attraper 1 parmi 1000. Trop facile de taper sur l'utilisateur, les systèmes ne sont pas adaptés, les informaticiens sont nul en compta. Accompagner, prévoir, surveiller.
 
 Pourquoi ces problèmes de sécurité ?
@@ -92,7 +91,7 @@ Pourquoi ces problèmes de sécurité ?
 * Cycle de vie d'une vulnérabilité (non publique mais utilisée nation-sponsored/elite, perspective avec les outils qui disent les détecter mais ne les ont pas vues depuis x années)
 
 ![Cycle de vie (Graphisme de Gabriel Augendre [gabriel@augendre.info] CC-BY 4.0](cycle-de-vie.png)
-_Cycle de vie (Graphisme de Gabriel Augendre [gabriel@augendre.info] CC-BY 4.0_
+_(Graphisme de Gabriel Augendre [gabriel@augendre.info], 5TC 2018, CC-BY 4.0_)
 
 * La sécurité est un process et non un état
 * Barrière sécurité/développement (dévs non sécu, sécu non dévs, communication pas simple)
@@ -107,7 +106,7 @@ Systèmes fondamentalement non sûrs donc côté infra :
 * cloisonnement
 * surveillance
 * patch management
-* La sécurité n'est pas une liste d'outils ! éviter la collection [HalvarFlake blackhat ASIA 2017](https://www.youtube.com/watch?v=PLJJY5UFtqY), les outils complexes et privilégiés.
+* La sécurité n'est pas une liste d'outils ! éviter la collection ([HalvarFlake blackhat ASIA 2017](https://www.youtube.com/watch?v=PLJJY5UFtqY)), les outils complexes et privilégiés.
 
 Petit panorama des malwares
 ---------------------------
