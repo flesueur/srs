@@ -92,7 +92,6 @@ Pourquoi ces problèmes de sécurité ?
 * Cycle de vie d'une vulnérabilité (non publique mais utilisée nation-sponsored/elite, perspective avec les outils qui disent les détecter mais ne les ont pas vues depuis x années)
 
 ![Cycle de vie (Graphisme de Gabriel Augendre [gabriel@augendre.info] CC-BY 4.0](cycle-de-vie.png)
-
 _Cycle de vie (Graphisme de Gabriel Augendre [gabriel@augendre.info] CC-BY 4.0_
 
 * La sécurité est un process et non un état
