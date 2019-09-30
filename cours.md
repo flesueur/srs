@@ -16,6 +16,20 @@ Qu'est-ce que la sécu ? CIA. Qu'est-ce que "faire de la sécu" ? Opérer une in
 Introduction
 ============
 
+Quelques actualités de la sécurité 2019
+------------------------------
+
+* Retadup, un botnet demantelé par la gendarmerie (et désactivé à distance) [details](https://www.zdnet.fr/actualites/retadup-le-coup-de-main-d-avast-pour-demanteler-le-botnet-39889659.htm)
+* Jailbreak IPhone très bas niveau chekm8 [details](https://blog.trailofbits.com/2019/09/27/tethered-jailbreaks-are-back/)
+* Attaque ciblée des smartphones de communautés (Uighurs, Tibet)  [details](https://www.technologyreview.com/f/614277/apple-says-chinas-uighur-muslims-were-targeted-in-iphone-hacking-campaign/), [details](https://citizenlab.ca/2019/09/poison-carp-tibetan-groups-targeted-with-1-click-mobile-exploits/)
+* Intrusion avec persistence chez Citrix (supply-chain attack ?) [details](https://www.zdnet.com/article/hackers-lurked-in-citrix-systems-for-six-months/?ftag=CAD2e14604)
+* Des ransomwares sur des institutions publiques [details](https://www.wired.com/story/ransomware-hits-georgia-courts-municipal-attacks-spread/)
+* Asus Live Update (supply-chain) [details](https://www.wired.com/story/asus-software-update-hack/)
+* RCE sur RDP [details](https://wazehell.io/2019/05/22/cve-2019-0708-technical-analysis-rdp-rce/)
+* Affaire Huawei/Kaspersky [details](https://www.schneier.com/blog/archives/2019/09/supply-chain_se_1.html)
+* Et bien sûr, des tensions géopolitiques
+* Non-facts : IA, blockchain
+
 Quelques actualités de la sécurité 2018
 ------------------------------
 
@@ -47,7 +61,7 @@ Quelques réflexions plus ou moins personnelles
 -----------------------------------------
 
 * Outillage/vulns de très simple (script kiddie) à élitiste (nation-sponsored, 0days)
-* Attribution difficile et peu vérifiable pour le monde civil (mélange de magie noire, bluff, BS et lancer de dés), les étatiques ne communiquent pas dessus.
+* Attribution difficile et peu vérifiable pour le monde civil (mélange de magie noire, bluff, BS et [lancer de dés](https://i.etsystatic.com/11450141/r/il/0ab70a/1132361728/il_570xN.1132361728_4jgx.jpg)), les étatiques ne communiquent pas dessus.
 * Bataille entre grandes puissances, impacts sur tous
 
 Enjeux et acteurs
@@ -63,17 +77,22 @@ Classes d'attaques
 
 Sécurité = Confidentialité, Intégrité, Disponibilité
 
+
+* Logiciel : RCE, élévation de privilèges, WEB, natif, fautes logiques : vivre dans l'insécurité
 * Réseau
 	* Passif (écoute)
 	* Actif : MitM, être sur le chemin (physique, ethernet ARP spoof, IP rogue DHCP) (NSA, FAI, INSA, attaque équipement sur la route, attaque sur l'hôte)
-* Logiciel : RCE, élévation de privilèges, WEB, natif, fautes logiques : vivre dans l'insécurité
 * Social engineering (pas la faute de l'utilisateur !) : voler des accès, phishing de qualité, passwords, carte de crédit. De grossier à ciblé, utilisation de facebook pour connaître les amis, ceux qui sont en vacance, où, etc. De beaux site en https avec une petite typo. Mail spoofing. Attraper 1 parmi 1000. Trop facile de taper sur l'utilisateur, les systèmes ne sont pas adaptés, les informaticiens sont nul en compta. Accompagner, prévoir, surveiller.
 
 Pourquoi ces problèmes de sécurité ?
 --------------------------------------
 
 * Vulnérabilités : partout, toujours, dans plusieurs états (connues et patchées, connues et non patchées, non connues du grand public et non patchées, non connues et non patchées)
-* Cycle de vie d'une vulnérabilité (non publique mais utilisée nation-sponsored/elite, perspective avec les outils qui disent les détecter mais ne les ont pas vues depuis x années
+* No disclosure, Full disclosure, Responsible disclosure ([resp fail](https://gadgets.ndtv.com/laptops/news/google-project-zero-microsoft-windows-10-zero-day-exploit-vulnerability-symcrypt-2053185))
+* Cycle de vie d'une vulnérabilité (non publique mais utilisée nation-sponsored/elite, perspective avec les outils qui disent les détecter mais ne les ont pas vues depuis x années)
+
+![Cycle de vie (Graphisme de Gabriel Augendre [gabriel@augendre.info] CC-BY 4.0](cycle-de-vie.svg)
+
 * La sécurité est un process et non un état
 * Barrière sécurité/développement (dévs non sécu, sécu non dévs, communication pas simple)
 * Infrastructure : endroit de mitigation possible. Rustiner ! Défense en profondeur.
