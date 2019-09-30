@@ -91,7 +91,7 @@ Pourquoi ces problèmes de sécurité ?
 * No disclosure, Full disclosure, Responsible disclosure ([resp fail](https://gadgets.ndtv.com/laptops/news/google-project-zero-microsoft-windows-10-zero-day-exploit-vulnerability-symcrypt-2053185))
 * Cycle de vie d'une vulnérabilité (non publique mais utilisée nation-sponsored/elite, perspective avec les outils qui disent les détecter mais ne les ont pas vues depuis x années)
 
-![Cycle de vie (Graphisme de Gabriel Augendre [gabriel@augendre.info] CC-BY 4.0](cycle-de-vie.svg)
+![Cycle de vie (Graphisme de Gabriel Augendre [gabriel@augendre.info] CC-BY 4.0](cycle-de-vie.png)
 
 * La sécurité est un process et non un état
 * Barrière sécurité/développement (dévs non sécu, sécu non dévs, communication pas simple)
