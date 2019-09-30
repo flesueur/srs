@@ -93,6 +93,8 @@ Pourquoi ces problèmes de sécurité ?
 
 ![Cycle de vie (Graphisme de Gabriel Augendre [gabriel@augendre.info] CC-BY 4.0](cycle-de-vie.png)
 
+_Cycle de vie (Graphisme de Gabriel Augendre [gabriel@augendre.info] CC-BY 4.0_
+
 * La sécurité est un process et non un état
 * Barrière sécurité/développement (dévs non sécu, sécu non dévs, communication pas simple)
 * Infrastructure : endroit de mitigation possible. Rustiner ! Défense en profondeur.
