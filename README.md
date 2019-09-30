@@ -22,7 +22,7 @@ Les notes de CM : [CM](cours.md)
 
 Les TP : [TP1 (Intrusion)](tp1-intrusion.md) / [TP2 (Firewall)](tp2-firewall.md) / [TP3 (IDS)](tp3-ids.md) 
 
-Les articles des années précédentes : [2017](https://medium.com/insa-tc/secu2017/home)
+Les articles des années précédentes : [2017](https://medium.com/insa-tc/secu2017/home) | [2018](https://medium.com/insa-tc/tagged/secu2018)
 
 <!-- Les TP : [TP2 (OpenSSL)](tp2-openssl.md) 
 
