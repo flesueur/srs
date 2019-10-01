@@ -60,6 +60,7 @@ Quelques actualités de la sécurité 2017
 Quelques réflexions plus ou moins personnelles
 -----------------------------------------
 
+* Un peu de cyber vocabulaire
 * Outillage/vulns de très simple (script kiddie) à élitiste (nation-sponsored, 0days)
 * Attribution difficile et peu vérifiable pour le monde civil (mélange de magie noire, bluff, BS et [lancer de dés](https://i.etsystatic.com/11450141/r/il/0ab70a/1132361728/il_570xN.1132361728_4jgx.jpg)), les étatiques ne communiquent pas dessus.
 * Bataille entre grandes puissances, impacts sur tous
@@ -108,6 +109,8 @@ Systèmes fondamentalement non sûrs donc côté infra :
 * partage
 * patch management
 * La sécurité n'est pas une liste d'outils ! éviter la collection ([HalvarFlake blackhat ASIA 2017](https://www.youtube.com/watch?v=PLJJY5UFtqY)), les outils complexes et privilégiés.
+
+=> Programme : les cours, les TP, l'article de blog, le slack
 
 Petit panorama des malwares
 ---------------------------
