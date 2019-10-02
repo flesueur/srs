@@ -13,6 +13,8 @@ _François Lesueur ([francois.lesueur@insa-lyon.fr](mailto:francois.lesueur@insa
 <!-- structure, plus carrée, plus détaillée + exemples. Des sections claires, des objectifs, un fil rouge 
 Qu'est-ce que la sécu ? CIA. Qu'est-ce que "faire de la sécu" ? Opérer une infra (?). Qu'est-ce qu'un outil de sécu ? truc à tout faire bof vs outil d'aide à l'opérateur. Et le soft dans tout ça ? -->
 
+<!-- switcher l'ordre, commencer par TP1 avant (un bout) du cours, puis étudier le CM à partir des constations de TP1 -->
+
 Introduction
 ============
 

@@ -6,15 +6,15 @@ Ce TP sera réalisé dans l'infrastructure MI-LXC, disponible [ici](https://gith
 
 Pour une utilisation sur un poste personnel depuis le dépôt github, la procédure est expliquée dans le README.md.
 
-Pour une utilisation dans la VM "tp-sec-debian", MI-LXC est déjà installé et l'infrastructure déployée. Il faut passer root puis aller dans le dossier `/root/mi-lxc`. Ensuite, `./mi-lxc.py addbridges`, `./mi-lxc.py start`.
+Pour une utilisation dans la VM "tp-sec-debian", MI-LXC est déjà installé et l'infrastructure déployée. Il faut passer root puis aller dans le dossier `/root/mi-lxc`. Ensuite, `./mi-lxc.py start`.
 
-Une fois l'environnement démarré, la seule machine à utiliser est évidemment celle du hacker (`./mi-lxc.py display hacker`).
+Une fois l'environnement démarré, la seule machine à utiliser est évidemment celle du hacker (`./mi-lxc.py display isp-a-hacker`).
 
 
 Déroulement général
 ===================
 
-Votre objectif est de détruire les informations internes de l'entreprise _Target_ (données comptables, base clients). Pour ce faire, vous travaillerez exclusivement sur la machine du hacker. Une première reconnaissance vous a amené à savoir que votre cible héberge un wiki sur `http://www.target.virt`. Vous devrez réaliser les étapes suivantes :
+Votre objectif est de détruire les informations internes de l'entreprise _Target_ (données comptables, base clients). Pour ce faire, vous travaillerez exclusivement sur la machine du hacker. Une première reconnaissance vous a amené à savoir que votre cible héberge un wiki sur `http://www.target.milxc`. Vous devrez réaliser les étapes suivantes :
 
 * Récupération d'une adresse mail interne sur le wiki
 * Altération du wiki en y intégrant un cheval de Troie prêt à être téléchargé par un interne
@@ -72,12 +72,12 @@ Utilisez maintenant nmap sur la machine du commercial pour explorer le réseau i
 Récupération d'un mot de passe valide
 =====================================
 
-Pour aller plus loin, vous aurez besoin d'un mot de passe valide sur le SI. Vous pouvez obtenir celui du commercial à partir de l'[analyse de son profil Thunderbird par exemple](https://github.com/unode/firefox_decrypt), en ajoutant un piège à son `.bashrc` lui demandant de retaper son mot de passe ou encore en intégrant la saisie lors du lancement du cheval de Troie.
+Pour aller plus loin, vous aurez besoin d'un mot de passe valide sur le SI. Vous pouvez obtenir celui du commercial à partir de l'[analyse de son profil ClawsMail par exemple](https://github.com/AlessandroZ/LaZagne), en ajoutant un piège à son `.bashrc` lui demandant de retaper son mot de passe ou encore en intégrant la saisie lors du lancement du cheval de Troie.
 
 Accès à la machine cible
 ========================
 
-Pivotez vers la machine hébergeant les données ciblées. Vous pouvez ensuite utiliser la commande `find` avec les bons arguments pour trouver, sur cette machine cible, les fichiers sur lesquels vous pourriez avoir des droits en écriture.
+Pivotez vers la machine hébergeant les données ciblées. Pour faire du SSH, vous aurez besoin d'un shell [amélioré](https://artkond.com/2017/03/23/pivoting-guide/#beutifying-your-web-shell) ou d'utiliser [sshpass](https://srvfail.com/how-to-provide-ssh-password-inside-a-script-or-oneliner/) (disponible sur la machine du commercial). Vous pouvez ensuite utiliser la commande `find` avec les bons arguments pour trouver, sur cette machine cible, les fichiers sur lesquels vous pourriez avoir des droits en écriture.
 
 
 Bonus
