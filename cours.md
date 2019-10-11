@@ -138,9 +138,11 @@ Buts
 * Protéger le SI
 	* Diminuer la surface d'attaque
 	* Limiter les attaques sur les services ouverts
+	* Sur les 2 dimensions ext->int (intrusion) et int->int (rebond)
 * Limiter les actions internes
 	* Contrôler les activités (infection, relais attaque, baisse productivité)
 	* Limiter les fuites de données (?)
+* Implémenter une politique de flux haut-niveau ("pas de contrôle depuis l'extérieur") sur des éléments de protocole ("pas de connexion TCP entrante", "pas de paquet contenant une signature connue d'attaque", etc.) (implique évidemment une simplification/incomplétude)
 
 La terminologie est floue !
 
@@ -152,11 +154,11 @@ Inspecter des paquets selon les axes d'étude :
 
 * Filtre/Alerte :
 	* Le filtre protège
-	* L'alerte ne protège pas, mais reste très pertinente : risque de se reproduire, on ne sait pas ce qui est impacté, réagir, conf ou int ? Obligation légale/commerciale (RGPD). Savoir qu'une intrusion a eu lieu, quel service, quelles données. Ex Yahoo, 3 milliards de comptes, 3 ans plus tard ; Facebook 2018
+	* L'alerte ne protège pas, mais reste très pertinente : risque de se reproduire, on ne sait pas ce qui est impacté, réagir, conf ou int ? Obligation légale/commerciale (RGPD). Savoir qu'une intrusion a eu lieu, quel service, quelles données. Ex Yahoo, 3 milliards de comptes, 3 ans plus tard ; Facebook 2018 ; [discours G. Poupard DG ANSSI aux Assises 2019](https://twitter.com/lsamain/status/1181872739495370753)
 * Niveau OSI
 * Contexte pré/post/pas
 * Ingress/Egress
-* Politique locale/globale
+* Politique locale/globale/mixte
 * Périmétrique/Interne
 
 Firewall
