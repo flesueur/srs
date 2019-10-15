@@ -115,7 +115,7 @@ Implémentation
 Implémentez votre matrice de flux sur la machine firewall. Vous aurez besoin de procéder en deux étapes :
 
 * Segmenter le réseau target :
-	* Éditer `global.json` pour spécifier les interfaces sur le routeur, dans la section "target". Il faut ajouter des bridges (dont le nom doit commencer par "target-") et découper l'espace 10.100.0.0/16
+	* Éditer `global.json` pour spécifier les interfaces sur le routeur, dans la section "target". Il faut ajouter des bridges (dont le nom doit commencer par "target-") et découper l'espace 10.100.0.0/16. Enfin, il faut ajouter les interfaces eth2, eth3, ... ainsi créées à la liste des `asdev` definie juste au-dessus
 	* Éditer `groups/target/local.json` pour éditer les adresses des interfaces et les bridges des machines internes (attention, pour un bridge nommé précédemment "target-dmz", il faut simplement écrire "dmz" ici, la partie "target-" est ajoutée automatiquement)
 	* Exécuter `./mi-lxc.py print` pour visualiser la topologie redéfinie
 	* Exécuter `./mi-lxc.py stop && ./mi-lxc.py renet && ./mi-lxc.py start` pour mettre à jour l'infrastructure déployée
