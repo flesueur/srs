@@ -15,6 +15,8 @@ Qu'est-ce que la sécu ? CIA. Qu'est-ce que "faire de la sécu" ? Opérer une in
 
 <!-- switcher l'ordre, commencer par TP1 avant (un bout) du cours, puis étudier le CM à partir des constations de TP1 -->
 
+<!-- twittrefs : https://twitter.com/search?q=%23CyberSecMonth%20%40xme&f=live , https://twitter.com/_pst/status/1184461709496467458 -->
+
 Introduction
 ============
 
