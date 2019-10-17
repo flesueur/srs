@@ -2,7 +2,7 @@
 
 _François Lesueur ([francois.lesueur@insa-lyon.fr](mailto:francois.lesueur@insa-lyon.fr))_
 
-Ce TP sera réalisé dans l'infrastructure MI-LXC, disponible [ici](https://github.com/flesueur/mi-lxc) ou dans la VM "tp-sec-debian" disponible en salle de TP (`/machines_virtuelles/secu_vms/master/tp-sec-debian.sh`, debian/debian et root/root). L'infrastructure déployée simule plusieurs postes dont un SI d'entreprise (firewall, DMZ, intranet, authentification centralisée, serveur de fichiers, quelques postes de travail interne), une machine d'attaquant (hacker) et quelques autres servant à l'intégration de l'ensemble.
+Ce TP sera réalisé dans l'infrastructure MI-LXC, disponible [ici](https://github.com/flesueur/mi-lxc) ou dans la VM "tp-sec-debian" disponible en salle de TP (`/machines_virtuelles/secu_vms/master/tp-sec-debian.sh`, root/root). L'infrastructure déployée simule plusieurs postes dont un SI d'entreprise (firewall, DMZ, intranet, authentification centralisée, serveur de fichiers, quelques postes de travail interne), une machine d'attaquant (hacker) et quelques autres servant à l'intégration de l'ensemble.
 
 Pour une utilisation sur un poste personnel depuis le dépôt github, la procédure est expliquée dans le README.md.
 
@@ -121,6 +121,8 @@ Implémentez votre matrice de flux sur la machine firewall. Vous aurez besoin de
 	* Exécuter `./mi-lxc.py stop && ./mi-lxc.py renet && ./mi-lxc.py start` pour mettre à jour l'infrastructure déployée
 * Implémenter de manière adaptée les commandes iptables sur la machine target-router (dans la chaîne FORWARD). Si possible dans un script (qui nettoie les règles au début), en cas d'erreur.
 
+> L'arborescence de MI-LXC et les fichiers json manipulés ici sont décrits [ici](https://github.com/flesueur/mi-lxc#how-to-extend).
+
 Évaluation
 ----------
 
@@ -156,6 +158,7 @@ Vous avez pu vous rendre compte de la complexité du réglage manuel du pare-feu
 
 De nombreuses solutions ont été développées pour faciliter la gestion des règles iptables. Nous allons ici utiliser Shorewall. Shorewall n'est pas un démon et repose entièrement sur iptables. Il consiste en une série de scripts permettant de simplifier la configuration, notamment en définissant la notion de zones. Installez shorewall (`apt-get install shorewall`) puis réimplémentez votre politique de sécurité avec cet outil.
 
+_Note : Pour les plus aventuriers, il est possible d'expérimenter firewalld, outil plus moderne_
 
 FTP
 ---
