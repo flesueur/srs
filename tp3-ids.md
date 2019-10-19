@@ -2,10 +2,10 @@
 
 _François Lesueur ([francois.lesueur@insa-lyon.fr](mailto:francois.lesueur@insa-lyon.fr))_
 
-Ce TP sera réalisé dans l'infrastructure MI-LXC, disponible [ici](https://github.com/flesueur/mi-lxc) (nécessite un Linux en root) ou dans la VM "tp-sec-debian" disponible en salle de TP (`/machines_virtuelles/secu_vms/master/tp-sec-debian.sh`, debian/debian et root/root). L'infrastructure déployée simule plusieurs postes dont un SI d'entreprise (firewall, DMZ, intranet, authentification centralisée, serveur de fichiers, quelques postes de travail interne), une machine d'attaquant (hacker) et quelques autres servant à l'intégration de l'ensemble.
+Ce TP sera réalisé dans l'infrastructure MI-LXC, disponible [ici](https://github.com/flesueur/mi-lxc) ou dans la VM "tp-sec-debian" disponible en salle de TP (`/machines_virtuelles/secu_vms/master/tp-sec-debian.sh`, root/root). L'infrastructure déployée simule plusieurs postes dont un SI d'entreprise (firewall, DMZ, intranet, authentification centralisée, serveur de fichiers, quelques postes de travail interne), une machine d'attaquant (hacker) et quelques autres servant à l'intégration de l'ensemble.
 
 * Pour une utilisation sur un poste personnel depuis le dépôt github, la procédure est expliquée dans le README.md.
-* Pour une utilisation dans la VM "tp-sec-debian", MI-LXC est déjà installé et l'infrastructure déployée. Il faut passer root puis aller dans le dossier `/root/mi-lxc`. Ensuite, `git pull` (pour récupérer les dernières modifications...) puis `./mi-lxc.py start`.
+* Pour une utilisation dans la VM "tp-sec-debian", MI-LXC est déjà installé et l'infrastructure déployée. Il faut passer root puis aller dans le dossier `/root/mi-lxc`. Ensuite, `./mi-lxc.py start`.
 
 Durant ce TP, vous allez analyser un scénario d'attaque et travailler à sa détection par NIDS (Network IDS), HIDS (Host IDS) puis corrélation d'alertes. Les outils utilisés seront Suricata (NIDS), OSSEC (HIDS), Prelude (SIEM et corrélation).
 
@@ -36,26 +36,26 @@ Architecture réseau
 
 L'infrastructure réseau du SI à surveiller est la suivante :
 
-* firewall en entrée de réseau
-* nis, dmz, intranet et filer sont des serveurs internes
+* router en entrée de réseau
+* ldap, dmz, intranet et filer sont des serveurs internes
 * commercial, dev et admin sont postes clients internes
 
 
 Les logiciels suivants sont pré-installés :
 
-* Suricata (firewall)
-* Prelude-manager (firewall)
-* Prelude-correlator (firewall)
-* Prewikka (firewall)
+* Suricata (router)
+* Prelude-manager (router)
+* Prelude-correlator (router)
+* Prewikka (router)
 * OSSEC (dmz)
 
 
 Suricata (NIDS)
 ---------------
 
-Suricata est un IDPS réseau qui utilise le même format de règles que Snort. Il est installé sur le Firewall. Sa configuration est dans `/etc/suricata/suricata.yaml` et nous allons utiliser le fichier de règles `/etc/suricata/rules/local.rules`. Vous pourrez visualiser le fichier de log `/var/log/suricata/fast.log`.
+Suricata est un IDPS réseau. Il est installé sur le routeur. Sa configuration est dans `/etc/suricata/suricata.yaml` et nous allons utiliser le fichier de règles `/etc/suricata/rules/local.rules`. Vous pourrez visualiser le fichier de log `/var/log/suricata/fast.log`.
 
-La règle Snort
+La règle
 ```
  alert tcp 10.0.0.1 80 -> 192.168.1.0/24 111 (content:"Waldo"; msg:"Waldo's here";sid:1001)
 ```
@@ -77,10 +77,6 @@ Pour avoir un aperçu du type de règles fournies par défaut avec Suricata, vou
 
 Lorsque vous modifiez les règles, il faut recharger le fichier avec  `service suricata restart`.
 
-<!-- 
-Dans la configuration préinstallée, Suricata est en écoute seulement (pas IPS). D'autres configurations de Suricata permettent de le mettre en interception, par exemple en activant `nfqueue` dans `/etc/default/suricata`. Pour activer ensuite le passage par Suricata dans la configuration installée, il faut ajouter une décision NFQUEUE au lieu des décision ACCEPT dans les règles IPTables. Par exemple, pour faire passer par Suricata tout le trafic forwardé :
-`iptables -A FORWARD -j NFQUEUE` (attention, suricata prend des décisions définitives, le reste des règles n'est pas appelé ensuite ! Une solution plus évoluée utilisant les marques et le mode repeat de Suricata est présentée [ici](https://docs.mirantis.com/mcp/latest/mcp-security-best-practices/use-cases/idps-vnf/ips-mode/nfq.html))
--->
 
 > Dans la configuration préinstallée, Suricata est en écoute seulement (pas IPS). D'autres configurations de Suricata permettent de le mettre en interception. Si vous souhaitez tester Suricata en IPS, voici les étapes :
 >
@@ -99,10 +95,8 @@ OSSEC (HIDS)
 
 OSSEC est un HIDS installé sur la machine DMZ. Il permet notamment de surveiller les logs (dont accès/refus d'accès du serveur web) et les fichiers présents sur la machine. Sa configuration se trouve dans `/var/ossec/etc/ossec.conf`.
 
-La partie `syscheck` est responsable de surveiller les fichiers présents (doc [ici](https://ossec.github.io/docs/manual/syscheck/index.html), FAQ [ici](https://www.ossec.net/docs/faq/syscheck.html#why-aren-t-new-files-creating-an-alert) avec la règle à ajouter impérativement dans un `<group>`), il est aussi possible d'analyser les logs (doc [ici](https://ossec.github.io/docs/manual/monitoring/index.html)). Attention pour syscheck, la surveillance d'apparition de nouveaux fichiers (non présente par défaut, il faut ajouter une option et une règle, tout est détaillé sur la page de doc) nécessite de désactiver `realtime` explicitement. Pour utiliser syscheck, il faut attendre que la surveillance soit prête (cela prend un certain temps au démarrage), à surveiller dans `/var/ossec/logs/ossec.log`. Les alertes sont ensuite dans `/var/ossec/logs/alerts/alerts.log`. Chaque alerte contient un identifiant de règle, qui permet de retrouver la règle originale dans les fichiers `/var/ossec/rules/*`. Il est possible d'utiliser `service ossec restart` pour déclencher un re-scan du système.
+La partie `syscheck` est responsable de surveiller les fichiers présents (doc [ici](https://ossec.github.io/docs/manual/syscheck/index.html), FAQ [ici](https://www.ossec.net/docs/faq/syscheck.html#why-aren-t-new-files-creating-an-alert) avec la règle à ajouter impérativement dans un `<group>`), il est aussi possible d'analyser les logs (doc [ici](https://ossec.github.io/docs/manual/monitoring/index.html)). Attention pour syscheck, la surveillance d'apparition de nouveaux fichiers (non présente par défaut, il faut ajouter une option et une règle, tout est détaillé sur la page de doc) nécessite de désactiver `realtime` explicitement. Pour utiliser syscheck, il faut attendre que la surveillance soit prête (cela prend un certain temps au démarrage), à surveiller dans `/var/ossec/logs/ossec.log`. Les alertes sont ensuite dans `/var/ossec/logs/alerts/alerts.log`. Chaque alerte contient un identifiant de règle, qui permet de retrouver la règle originale dans les fichiers `/var/ossec/rules/*`. Il est possible d'utiliser `service ossec restart` / `/var/ossec/bin/agent_control -r -id 000` pour déclencher un re-scan du système.
 
-<!-- Pour surveiller les fichiers de log, il convient de modifier dans `ossec.conf` le chemin des logs apache (ils sont dans `/var/log/apache2/`).
--->
 
 Prelude-manager (concentrateur)
 -------------------------------
@@ -113,7 +107,7 @@ Lors du jumelage, chaque sonde conserve un profil local (`/etc/preludes/profiles
 
 Pour jumeler une sonde au manager, il faut :
 
-* côté manager (VM Firewall) : `prelude-admin registration-server prelude-manager`
+* côté manager (router) : `prelude-admin registration-server prelude-manager`
 * côté sonde : `prelude-admin register <profile> "idmef:w" <IP manager> --uid 0 --gid 0`, avec
 	* `<profile>` : nom du profil, suricata pour Suricata et OSSEC-DMZ pour OSSEC
 	* `<IP manager>` : l'IP du manager
@@ -124,11 +118,11 @@ Pour jumeler une sonde au manager, il faut :
 Prewikka (interface web de visualisation)
 -----------------------------------------
 
-Prewikka est une application web permettant la visualisation de l'état des sondes enregistrées ainsi que des alertes. Il est installé sur la machine Firewall. Il doit être démarré avec `prewikka-httpd` et est ensuite accessible depuis le navigateur d'un poste de travail interne à l'URL `http://firewall:8000`. Le compte est admin/admin (bien sûr, la première étape dans un vrai déploiement est de changer cela...).
+Prewikka est une application web permettant la visualisation de l'état des sondes enregistrées ainsi que des alertes. Il est installé sur la machine Firewall. Il doit être démarré avec `prewikka-httpd` et est ensuite accessible depuis le navigateur d'un poste de travail interne à l'URL `http://router:8000`. Le compte est admin/admin (bien sûr, la première étape dans un vrai déploiement est de changer cela...).
 
-Si prelude-manager apparaît offline, il faut le relancer (sur la VM Firewall) : `service prelude-manager restart`  (il y a parfois un message d'erreur mais en fait, ça marche [au moins en partie]).
+Il faut ensuite lancer prelude-manager (sur router) : `service prelude-manager start`.
 
-Par défaut, la liste des agents (les sondes) est vide. Il faut ajouter Suricata (activer prelude dans la configuration suricata `/etc/suricata/suricata-debian.yaml` puis `service suricata restart`) puis OSSEC (activer prelude dans la configuration OSSEC `/var/ossec/etc/ossec.conf` puis `service ossec restart`).
+Par défaut, la liste des agents (les sondes) est vide. Il faut ajouter Suricata (activer prelude dans la configuration suricata `/etc/suricata/suricata.yaml` puis `service suricata restart`) puis OSSEC (activer prelude dans la configuration OSSEC `/var/ossec/etc/ossec.conf` puis `service ossec restart`).
 
 Vous pouvez ensuite visualiser des événements. Si tout n'apparaît pas, quelques restarts de services peuvent faire tomber en marche !
 
