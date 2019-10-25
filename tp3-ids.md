@@ -130,7 +130,7 @@ Vous pouvez ensuite visualiser des événements. Si tout n'apparaît pas, quelqu
 Prelude-correlator (corrélation)
 --------------------------------
 
-Jumelage avec le manager : `prelude-admin register prelude-correlator "idmef:rw" 127.0.0.1 --uid prelude-correlator --gid prelude-correlator` (accès read/write cette fois-ci car la corrélation nécessite la lecture des alertes remontées et l'écriture de nouvelles alertes). Puis relancer le service prelude-correlator.
+Jumelage avec le manager : `prelude-admin register prelude-correlator "idmef:rw" 127.0.0.1 --uid 0 --gid 0` (accès read/write cette fois-ci car la corrélation nécessite la lecture des alertes remontées et l'écriture de nouvelles alertes). Puis relancer le service prelude-correlator.
 
 Une règle de corrélation est en fait un script python. Vous trouverez un exemple dans `/usr/share/doc/prelude-correlator/examples`. Pour l'installer, tapez :
 
