@@ -83,10 +83,11 @@ Lorsque vous modifiez les règles, il faut recharger le fichier avec  `service s
 > * `cp /lib/systemd/system/suricata.service  /etc/systemd/system/suricata.service`
 > * Remplacer `--af-packet` par `-q0` dans `/etc/systemd/system/suricata.service`
 > * Utiliser `drop` au lieu de `alert` dans les règles
+> * Recharger systemd `systemctl daemon-reload`
 > * `service suricata restart`
 >
 > Pour activer ensuite le passage par Suricata dans la configuration installée, il faut ajouter une décision NFQUEUE au lieu des décision ACCEPT dans les règles IPTables. Par exemple, pour faire passer par Suricata tout le trafic forwardé :
-`iptables -A FORWARD -j NFQUEUE` (attention, suricata prend des décisions définitives, le reste des règles n'est pas appelé ensuite ! Une solution plus évoluée utilisant les marques et le mode repeat de Suricata est présentée [ici](https://docs.mirantis.com/mcp/latest/mcp-security-best-practices/use-cases/idps-vnf/ips-mode/nfq.html))
+`iptables -I FORWARD -j NFQUEUE` (attention, suricata prend des décisions définitives, le reste des règles n'est pas appelé ensuite ! Une solution plus évoluée utilisant les marques et le mode repeat de Suricata est présentée [ici](https://docs.mirantis.com/mcp/latest/mcp-security-best-practices/use-cases/idps-vnf/ips-mode/nfq.html))
 
 
 
