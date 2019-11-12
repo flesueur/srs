@@ -145,3 +145,6 @@ disable=false
 
 Enfin, relancez prelude-correlator. Une documentation plus complète est disponible [ici](https://www.prelude-siem.org/projects/prelude/wiki/PreludeCorrelator). YOLO !
 
+
+_Crédits : certaines parties ont été inspirées de sujets de [Guillaume Hiet](http://guillaume.hiet.fr/)_
+
