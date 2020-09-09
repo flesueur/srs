@@ -17,6 +17,8 @@ Qu'est-ce que la sécu ? CIA. Qu'est-ce que "faire de la sécu" ? Opérer une in
 
 <!-- twittrefs : https://twitter.com/search?q=%23CyberSecMonth%20%40xme&f=live , https://twitter.com/_pst/status/1184461709496467458 -->
 
+<!-- https://securitylab.github.com/research/octopus-scanner-malware-open-source-supply-chain -->
+
 Introduction
 ============
 
