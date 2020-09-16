@@ -36,7 +36,7 @@ Ainsi :
 L'évaluation porte sur l'écriture de l'article de blog, qui mobilise les compétences enseignées dans l'ensemble des cours. Plus d'infos à venir.
 
 
-Divers
+Pages des cours et TP
 ======
 
 Pour interagir/discuter/commenter/poser des questions en dehors des heures de cours, vous devez utiliser le canal Discord #5tc-srs.
