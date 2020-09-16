@@ -84,3 +84,10 @@ Bonus
 =====
 
 Il existe un chemin d'attaque, qui sera plus difficile à contrôler côté firewall, qui rebondit par la machine `dev`...
+
+
+Disclaimer
+==========
+
+![Bad guy](media/bad.jpg)
+_Attention, lui, il l'a fait pour de vrai..._

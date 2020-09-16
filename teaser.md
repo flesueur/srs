@@ -5,4 +5,4 @@ _François Lesueur ([francois.lesueur@insa-lyon.fr](mailto:francois.lesueur@insa
 Teaser
 ======
 
-<audio controls src="audio/teaser.mp3">
+<audio controls src="media/teaser.mp3">
