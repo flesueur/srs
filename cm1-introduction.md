@@ -96,6 +96,7 @@ Enjeux et acteurs
 ===============
 
 Les acteurs : <audio controls src="media/acteurs.mp3"></audio>
+
 Exemple d'enjeu : <audio controls src="media/enjeux.mp3"></audio>
 
 
@@ -107,10 +108,9 @@ Exemple d'enjeu : <audio controls src="media/enjeux.mp3"></audio>
 
 
 
-[Quelque bons conseils](https://twitter.com/search?q=%23CyberSecMonth%20%40xme)
+[Quelque bons conseils de Xavier Mertens](https://twitter.com/search?q=%23CyberSecMonth%20%40xme)
 
-![howto](media/saadk.jpeg)
-_Saad Kadhi, head of CERT-EU_
+Les pistes à explorer selon Saad Kadhi, head of CERT-EU ![howto](media/saadk.jpeg)
 <!-- https://twitter.com/_pst/status/1184461709496467458 -->
 
 
