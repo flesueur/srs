@@ -10,7 +10,7 @@ Qu'est-ce que la sécu ? CIA. Qu'est-ce que "faire de la sécu" ? Opérer une in
 Déroulement
 ===========
 
-<audio controls="true" src="media/introsrs.mp3">
+<audio controls="true" src="media/introsrs.mp3"></audio>
 
 Lire et comprendre le README qui détaille le déroulé de la matière (mais normalement, si vous êtes là, vous l'avez déjà fait...)
 
