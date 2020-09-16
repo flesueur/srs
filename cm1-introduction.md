@@ -18,7 +18,7 @@ Lire et comprendre le README qui détaille le déroulé de la matière (mais nor
 Quelques actualités de la sécurité
 ==============
 
-<audio controls src="media/attaques2020.mp3">
+<audio controls src="media/attaques2020.mp3"></audio>
 
 Passer 30 minutes/1 heure pour faire un petit tour d'actualités de votre choix (vous verrez, il y a bien des russes, des chinois et des états-uniens comme promis !)
 
@@ -81,9 +81,9 @@ Passer 30 minutes/1 heure pour faire un petit tour d'actualités de votre choix 
 Quelques réflexions plus ou moins personnelles
 ===============
 
-Contexte général : <audio controls src="media/introsecu2.mp3">
+Contexte général : <audio controls src="media/introsecu2.mp3"></audio>
 
-Menaces et risque : <audio controls src="media/risques.mp3">
+Menaces et risque : <audio controls src="media/risques.mp3"></audio>
 
 
 * Outillage/vulns de très simple (script kiddie) à élitiste (nation-sponsored, 0days)
@@ -95,8 +95,8 @@ Menaces et risque : <audio controls src="media/risques.mp3">
 Enjeux et acteurs
 ===============
 
-Les acteurs : <audio controls src="media/acteurs.mp3">
-Exemple d'enjeu : <audio controls src="media/enjeux.mp3">
+Les acteurs : <audio controls src="media/acteurs.mp3"></audio>
+Exemple d'enjeu : <audio controls src="media/enjeux.mp3"></audio>
 
 
 * Les organisations (se protéger)
