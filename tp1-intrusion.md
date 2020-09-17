@@ -86,6 +86,11 @@ Bonus
 Il existe un chemin d'attaque, qui sera plus difficile à contrôler côté firewall, qui rebondit par la machine `dev`...
 
 
+Ouverture
+=========
+
+[_Ransomwares : quel mode opératoire en 2020 ?_, Amossys](https://blog.amossys.fr/ransomware-2020.html)
+
 Disclaimer
 ==========
 

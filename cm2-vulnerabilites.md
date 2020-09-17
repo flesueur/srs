@@ -5,10 +5,32 @@ _François Lesueur ([francois.lesueur@insa-lyon.fr](mailto:francois.lesueur@insa
 ATTENTION, NON FINALISÉ !
 =========================
 
+Les pans de la sécurité
+==================
+
+Sécurité = Confidentialité, Intégrité, Disponibilité : <audio controls src="media/cia.mp3"></audio>
+
+Les spécificités de la sécurité : <audio controls src="media/specsecu.mp3"></audio>
+
+Sécu défensive et sécu offensive (dans le respect de la loi, bien évidemment) : <audio controls src="media/defoff.mp3"></audio>
+
+
+Notion de vulnérabilité
+================
+
+Qu'est-ce qu'une vulnérabilité ?
+
+* Vulnérabilités : partout, toujours, dans plusieurs états (connues et patchées, connues et non patchées, non connues du grand public et non patchées, non connues et non patchées)
+* No disclosure, Full disclosure, Responsible disclosure ([Politique Google P0](https://googleprojectzero.blogspot.com/2020/01/policy-and-disclosure-2020-edition.html), [resp fail](https://gadgets.ndtv.com/laptops/news/google-project-zero-microsoft-windows-10-zero-day-exploit-vulnerability-symcrypt-2053185)) <audio controls src="media/disclosure.mp3"></audio>
+* Cycle de vie d'une vulnérabilité : <video src="media/cycledevie.mkv"></video>
+
+![Cycle de vie (Graphisme de Gabriel Augendre [gabriel@augendre.info] CC-BY 4.0](cycle-de-vie.png)
+_(Graphisme de Gabriel Augendre [gabriel@augendre.info], 5TC 2018, CC-BY 4.0)_
+
+Quand on sait que certaines vulnérabilités sont non publiques mais utilisée par des états/des groupes avancés, que penser des outils qui disent détecter les menaces inconnues (grâce à l'IA, évidemment) mais ne les ont pas détecté depuis les années qu'elles sont utilisées ?
+
 Classes d'attaques
 =============
-
-Sécurité = Confidentialité, Intégrité, Disponibilité
 
 * Réseau
 	* Passif (écoute)
@@ -16,24 +38,11 @@ Sécurité = Confidentialité, Intégrité, Disponibilité
 * Logiciel : RCE, élévation de privilèges, WEB, natif, fautes logiques : vivre dans l'insécurité
 * Social engineering (pas la faute de l'utilisateur !) : voler des accès, phishing de qualité, passwords, carte de crédit. De grossier à ciblé, utilisation de facebook pour connaître les amis, ceux qui sont en vacance, où, etc. De beaux site en https avec une petite typo. Mail spoofing. Attraper 1 parmi 1000. Trop facile de taper sur l'utilisateur, les systèmes ne sont pas adaptés, les informaticiens sont nul en compta. Accompagner, prévoir, surveiller. [Schneier : "Stop trying to fix the user"](https://www.schneier.com/blog/archives/2016/10/security_design.html)
 
-Pourquoi ces problèmes de sécurité ?
-================
-
-* Vulnérabilités : partout, toujours, dans plusieurs états (connues et patchées, connues et non patchées, non connues du grand public et non patchées, non connues et non patchées)
-* No disclosure, Full disclosure, Responsible disclosure ([Politique Google P0](https://googleprojectzero.blogspot.com/2020/01/policy-and-disclosure-2020-edition.html), [resp fail](https://gadgets.ndtv.com/laptops/news/google-project-zero-microsoft-windows-10-zero-day-exploit-vulnerability-symcrypt-2053185))
-* Cycle de vie d'une vulnérabilité (non publique mais utilisée nation-sponsored/elite, perspective avec les outils qui disent les détecter mais ne les ont pas vues depuis x années)
-
-![Cycle de vie (Graphisme de Gabriel Augendre [gabriel@augendre.info] CC-BY 4.0](cycle-de-vie.png)
-_(Graphisme de Gabriel Augendre [gabriel@augendre.info], 5TC 2018, CC-BY 4.0)_
-
-* La sécurité est un process et non un état
-* Barrière sécurité/développement (dévs non sécu, sécu non dévs, communication pas simple)
-* Infrastructure : endroit de mitigation possible. Rustiner ! Défense en profondeur.
 
 Que faire ?
 ========
 
-Systèmes fondamentalement non sûrs donc côté infra :
+Systèmes fondamentalement non sûrs. L'infrastructure est un endroit de mitigation possible :
 
 * défense en profondeur
 * cloisonnement
