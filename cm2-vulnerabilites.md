@@ -22,7 +22,7 @@ Qu'est-ce qu'une vulnérabilité ?
 
 * Vulnérabilités : partout, toujours, dans plusieurs états (connues et patchées, connues et non patchées, non connues du grand public et non patchées, non connues et non patchées)
 * No disclosure, Full disclosure, Responsible disclosure ([Politique Google P0](https://googleprojectzero.blogspot.com/2020/01/policy-and-disclosure-2020-edition.html), [resp fail](https://gadgets.ndtv.com/laptops/news/google-project-zero-microsoft-windows-10-zero-day-exploit-vulnerability-symcrypt-2053185)) <audio controls src="media/disclosure.mp3"></audio>
-* Cycle de vie d'une vulnérabilité : <video controls src="media/cycledevie.mkv" type='video/x-matroska; codecs="theora, vorbis"'></video>
+* Cycle de vie d'une vulnérabilité : <video controls src="media/cycledevie.mkv" type='video/x-matroska'></video>
 
 ![Cycle de vie (Graphisme de Gabriel Augendre [gabriel@augendre.info] CC-BY 4.0](cycle-de-vie.png)
 _(Graphisme de Gabriel Augendre [gabriel@augendre.info], 5TC 2018, CC-BY 4.0)_
