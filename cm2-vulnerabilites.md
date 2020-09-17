@@ -32,15 +32,17 @@ Quand on sait que certaines vulnérabilités sont non publiques mais utilisée p
 Classes d'attaques
 =============
 
-* Réseau
+* Réseau <audio controls src="media/reseau.mp3"></audio>
 	* Passif (écoute)
 	* Actif : MitM, être sur le chemin (physique, ethernet ARP spoof, IP rogue DHCP) (NSA, FAI, INSA, attaque équipement sur la route, attaque sur l'hôte)
-* Logiciel : RCE, élévation de privilèges, WEB, natif, fautes logiques : vivre dans l'insécurité
-* Social engineering (pas la faute de l'utilisateur !) : voler des accès, phishing de qualité, passwords, carte de crédit. De grossier à ciblé, utilisation de facebook pour connaître les amis, ceux qui sont en vacance, où, etc. De beaux site en https avec une petite typo. Mail spoofing. Attraper 1 parmi 1000. Trop facile de taper sur l'utilisateur, les systèmes ne sont pas adaptés, les informaticiens sont nul en compta. Accompagner, prévoir, surveiller. [Schneier : "Stop trying to fix the user"](https://www.schneier.com/blog/archives/2016/10/security_design.html)
+* Logiciel <audio controls src="media/natif.mp3"></audio> : RCE, élévation de privilèges, WEB, natif, fautes logiques : vivre dans l'insécurité. On peut discuter (discord) de buffer overflows, format strings, type de vulnérabilités web, ...
+* Social engineering (pas la faute de l'utilisateur !) <audio controls src="media/utilisateur.mp3"></audio> : voler des accès, phishing de qualité, passwords, carte de crédit. De grossier à ciblé, utilisation de facebook pour connaître les amis, ceux qui sont en vacance, où, etc. De beaux site en https avec une petite typo. Mail spoofing. Attraper 1 parmi 1000. Trop facile de taper sur l'utilisateur, les systèmes ne sont pas adaptés, les informaticiens sont nul en compta. Accompagner, prévoir, surveiller. [Schneier : "Stop trying to fix the user"](https://www.schneier.com/blog/archives/2016/10/security_design.html)
 
 
 Que faire ?
 ========
+
+<audio controls src="media/infra.mp3"></audio>
 
 Systèmes fondamentalement non sûrs. L'infrastructure est un endroit de mitigation possible :
 
@@ -54,11 +56,14 @@ Systèmes fondamentalement non sûrs. L'infrastructure est un endroit de mitigat
 Le déroulé du cours
 ===================
 
+<audio controls src="media/plan.mp3"></audio>
 * Ce qu'on va voir, ce qu'on ne va pas voir
 * Séances (cours, TP, article, discord)
 
 Petit panorama des malwares
 ==================
+
+À approfondir par vous-mêmes, en bonus :
 
 * Virus
 * Vers
