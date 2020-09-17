@@ -41,7 +41,7 @@ Pages des cours et TP
 
 Pour interagir/discuter/commenter/poser des questions en dehors des heures de cours, vous devez utiliser le canal Discord #5tc-srs.
 
-Les CM : [CM1](cm1-introduction) <!-- / [CM2](cm2-vulnerabilites) / [CM3](cm3-filtrage) -->
+Les CM : [CM1](cm1-introduction) / [CM2](cm2-vulnerabilites) <!-- / [CM3](cm3-filtrage) -->
 
 Les TP : [TP1 (Intrusion)](tp1-intrusion.md) / [TP2 (Firewall)](tp2-firewall.md) / [TP3 (IDS)](tp3-ids.md)
 
