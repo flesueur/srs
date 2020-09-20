@@ -8,7 +8,7 @@ Pour une utilisation sur un poste personnel depuis le dépôt github, la procéd
 
 Pour une utilisation dans la VM "tp-sec-debian", MI-LXC est déjà installé et l'infrastructure déployée. Il faut passer root puis aller dans le dossier `/root/mi-lxc`. Ensuite, `./mi-lxc.py start`.
 
-Une fois l'environnement démarré, la seule machine à utiliser est évidemment celle du hacker (`./mi-lxc.py display isp-a-hacker`). Ceci lance un affichage sur la machine du hacker (avec l'outil "Xephyr"). Si la souris reste bloquée dans cette fenêtre : appuyer sur CTRL+SHIFT.
+Une fois l'environnement démarré, la seule machine à utiliser est évidemment celle du hacker (`./mi-lxc.py display isp-a-hacker`). Ceci lance un affichage sur la machine du hacker (avec l'outil "Xephyr"). Si la souris reste bloquée dans cette fenêtre, appuyez sur CTRL+SHIFT pour la libérer.
 
 
 Déroulement général
