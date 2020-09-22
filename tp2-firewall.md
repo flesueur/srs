@@ -2,17 +2,23 @@
 
 _François Lesueur ([francois.lesueur@insa-lyon.fr](mailto:francois.lesueur@insa-lyon.fr))_
 
-Ce TP sera réalisé dans l'infrastructure MI-LXC, disponible [ici](https://github.com/flesueur/mi-lxc) ou dans la VM "tp-sec-debian" disponible en salle de TP (`/machines_virtuelles/secu_vms/master/tp-sec-debian.sh`, root/root). L'infrastructure déployée simule plusieurs postes dont un SI d'entreprise (firewall, DMZ, intranet, authentification centralisée, serveur de fichiers, quelques postes de travail interne), une machine d'attaquant (hacker) et quelques autres servant à l'intégration de l'ensemble.
+Ce TP sera réalisé dans la VM MI-LXC disponible [ici](https://filesender.renater.fr/?s=download&token=48a9bf06-d3a3-4cc1-857a-a23c9513568d). L'infrastructure déployée simule plusieurs postes dont un SI d'entreprise (firewall, DMZ, intranet, authentification centralisée, serveur de fichiers, quelques postes de travail interne de l'entreprise _Target_), une machine d'attaquant (isp-a-hacker) et quelques autres servant à l'intégration de l'ensemble.
 
-Pour une utilisation sur un poste personnel depuis le dépôt github, la procédure est expliquée dans le README.md.
+> Pour les curieux, le code de MI-LXC, qui sert à générer cette VM automatiquement, est disponible avec une procédure d'installation documentée [ici](https://github.com/flesueur/mi-lxc)
 
-Pour une utilisation dans la VM "tp-sec-debian", MI-LXC est déjà installé et l'infrastructure déployée. Il faut passer root puis aller dans le dossier `/root/mi-lxc`. Ensuite, `./mi-lxc.py start`.
+<!--  ou dans la VM "tp-sec-debian" disponible en salle de TP (`/machines_virtuelles/secu_vms/master/tp-sec-debian.sh`, debian/debian et root/root). L'infrastructure déployée simule plusieurs postes dont un SI d'entreprise (firewall, DMZ, intranet, authentification centralisée, serveur de fichiers, quelques postes de travail interne), une machine d'attaquant (hacker) et quelques autres servant à l'intégration de l'ensemble. La compréhension plus fine du SI de l'entreprise ciblée fait partie des objectifs du TP. -->
 
-Une fois l'environnement démarré, le firewall est à configurer sur la machine target-router (`./mi-lxc.py attach target-router`). Vous devrez travailler en root (mot de passe : root) pendant tout le TP (seul root est habilité à manipuler le pare-feu).
+
+Vous devez vous connecter à la VM en root/root. MI-LXC est déjà installé et l'infrastructure déployée, il faut avec un terminal aller dans le dossier `/root/mi-lxc`. Pour démarrer l'infrastructure, tapez `./mi-lxc.py start`. Une fois l'environnement démarré, le firewall est à configurer sur la machine target-router (`./mi-lxc.py attach target-router`). Vous devrez travailler en root (mot de passe : root) pendant tout le TP (seul root est habilité à manipuler le pare-feu).
+
+> Dans la VM et sur les machines MI-LXC, vous pouvez installer des logiciels supplémentaires. Par défaut, vous avez mousepad pour éditer des fichiers de manière graphique. La VM peut être affichée en plein écran. Si cela ne fonctionne pas, il faut parfois changer la taille de fenêtre manuellement, en tirant dans l'angle inférieur droit, pour que VirtualBox détecte que le redimensionnement automatique est disponible. Il y a une case adéquate (taille d'écran automatique) dans le menu écran qui doit être cochée. Si rien ne marche, c'est parfois en redémarrant la VM que cela peut se déclencher. Mais il *faut* la VM en plein écran.
 
 Avant de commencer le TP, vous devez lire le chapitre [Netfilter](https://fr.wikibooks.org/wiki/Administration_r%C3%A9seau_sous_Linux/Netfilter) du Wikibook "Administration Réseau sous Linux".
 
-_Note : Pour les plus aventuriers, il est possible d'utiliser nftables au lieu d'iptables_
+>Note 1 : Pour les plus aventuriers, il est possible d'utiliser nftables, le successeur d'iptables. Quelques infos de démarrage sont proposées [ici](https://wiki.nftables.org/wiki-nftables/index.php/Simple_rule_management)
+
+>Note 2 : Le TP est prévu sur IPv4, mais l'infrastructure supporte également IPv6. Vous pouvez donc aussi regarder IPv6 si vous le souhaitez.
+
 
 Protection de la machine firewall
 =================================
@@ -43,7 +49,7 @@ Vérifiez que vous pouvez vous connecter en SSH sur la machine target-router dep
 
 Nous allons maintenant interdire toutes les connexions sur le port 22 (SSH). Pour cela, il faut interdire dans la chaîne INPUT les paquets TCP sur le port 22 avec la cible DROP.
 
-Essayez maintenant de vous connecter en SSH sur votre machine Firewall depuis la machine Hacker.
+Essayez maintenant de vous connecter en SSH sur votre machine Router depuis la machine Hacker.
 
 Nous avons ici utilisé l'action DROP. Vous pouvez constater que la connexion est bien refusée mais que le client SSH met un certain temps à s'en apercevoir. Pourquoi ? Comment changer ce comportement ?
 
@@ -101,22 +107,23 @@ L'objectif d'une politique de sécurité réseau est de limiter les services acc
 * Filer héberge un partage de fichier qui doit être accessible à tous les postes clients
 * Commercial, Dev et Admin sont des postes client. Le commercial doit pouvoir accéder au site web intranet, le développeur doit pouvoir mettre à jour cet intranet et l'admin doit pouvoir administrer l'ensemble du parc
 * Les noms des conteneurs peuvent être affichés avec `./mi-lxc.py` (sans paramètres), les machines ne commençant pas par target représentent le "reste du monde" (WAN)
+* Le plan d'adressage peut être affiché avec `./mi-lxc.py print`
 
 La commande `netstat -lnp` permet d'afficher les ports en écoute sur une machine donnée.
 
 Votre description (matrice de flux sous forme tabulaire ou graphique) doit être claire et suffisamment précise pour être non ambiguë : un autre étudiant, avec cette description uniquement, devrait pouvoir refaire _exactement_ la même implémentation avec IPTables.
 
-__Faites valider votre matrice de flux papier par l'enseignant.__
+__Faites valider votre matrice de flux (tabulaire ou graphique, pas iptables) par l'enseignant.__
 
 
 Implémentation
 --------------
 
-Implémentez votre matrice de flux sur la machine firewall. Vous aurez besoin de procéder en deux étapes :
+Implémentez votre matrice de flux sur la machine target-router. Vous aurez besoin de procéder en deux étapes :
 
-* Segmenter le réseau target :
-	* Éditer `global.json` pour spécifier les interfaces sur le routeur, dans la section "target". Il faut ajouter des bridges (dont le nom doit commencer par "target-") et découper l'espace 10.100.0.0/16. Enfin, il faut ajouter les interfaces eth2, eth3, ... ainsi créées à la liste des `asdev` definie juste au-dessus
-	* Éditer `groups/target/local.json` pour éditer les adresses des interfaces et les bridges des machines internes (attention, pour un bridge nommé précédemment "target-dmz", il faut simplement écrire "dmz" ici, la partie "target-" est ajoutée automatiquement). Vous devrez mettre à jour les serveurs mentionnées dans les templates ldapclient et sshfs ou mettre à jour le DNS (fichier `/etc/nsd/target.milxc.zone` sur target-dmz)
+* Segmenter le réseau target ([tuto vidéo](https://videos.insa-lyon.net/videos/?video=MEDIA200922084649790)) :
+	* Éditer `global.json` (dans le dossier mi-lxc) pour spécifier les interfaces sur le routeur, dans la section "target". Il faut ajouter des bridges (dont le nom doit commencer par "target-") et découper l'espace 10.100.0.0/16. Enfin, il faut ajouter les interfaces eth2, eth3, ... ainsi créées à la liste des `asdev` definie juste au-dessus
+	* Éditer `groups/target/local.json` pour éditer les adresses des interfaces et les bridges des machines internes (attention, pour un bridge nommé précédemment "target-dmz", il faut simplement écrire "dmz" ici, la partie "target-" est ajoutée automatiquement). <!-- Vous devrez mettre à jour les serveurs mentionnées dans les templates ldapclient et sshfs ou mettre à jour le DNS (fichier `/etc/nsd/target.milxc.zone` sur target-dmz)-->
 	* Exécuter `./mi-lxc.py print` pour visualiser la topologie redéfinie
 	* Exécuter `./mi-lxc.py stop && ./mi-lxc.py renet && ./mi-lxc.py start` pour mettre à jour l'infrastructure déployée
 * Implémenter de manière adaptée les commandes iptables sur la machine target-router (dans la chaîne FORWARD). Si possible dans un script (qui nettoie les règles au début), en cas d'erreur.
@@ -132,10 +139,10 @@ Implémentez votre matrice de flux sur la machine firewall. Vous aurez besoin de
 Contournement de la politique
 -----------------------------
 
-Vous souhaitez fournir un accès vers le serveur interne de prototypage (intranet) à un client externe. Vous allez créer un tunnel pour contourner la politique de sécurité. Vous disposez pour cela des machines "dev" (votre poste de travail interne) et "isp-a-ome" (une machine extérieure, à votre domicile).
+Vous souhaitez fournir un accès vers le serveur interne de prototypage (intranet) à un client externe. Vous allez créer un tunnel pour contourner la politique de sécurité. Vous disposez pour cela des machines "dev" (votre poste de travail interne) et "isp-a-home" (une machine extérieure, à votre domicile).
 
 Côté home :
-```	
+```
 service apache2 stop   # Libération du port 80
 while true; do nc -v -l -p 80 -c "nc -l -p 8080"; done
 ```
