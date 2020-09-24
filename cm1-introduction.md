@@ -35,6 +35,8 @@ Passer 30 minutes/1 heure pour faire un petit tour d'actualités de votre choix 
 * Wordpress File Manager [détails](https://www.zdnet.com/article/millions-of-wordpress-sites-are-being-probed-attacked-with-recent-plugin-bug/)
 * Cyberguerre US-Chine [détails](https://us-cert.cisa.gov/ncas/alerts/aa20-258a)
 * Zerologon CVE-2020-1472
+* PulseSecure [details](https://www.securityweek.com/pulse-secure-vpn-vulnerability-exploited-deliver-ransomware)
+* Emotet (ransomware) [details](https://www.cert.ssi.gouv.fr/alerte/CERTFR-2020-ALE-019/)
 
 2019
 --------
