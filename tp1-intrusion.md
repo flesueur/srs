@@ -102,4 +102,5 @@ Disclaimer
 ==========
 
 ![Bad guy](media/bad.jpg)
+
 _Attention, lui, il l'a fait pour de vrai..._
