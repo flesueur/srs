@@ -8,16 +8,18 @@ ATTENTION, NON FINALISÉ !
 Buts
 ====
 
-* Protéger le SI
+* Filtrer : Protéger le SI
 	* Diminuer la surface d'attaque
 	* Limiter les attaques sur les services ouverts
-	* Sur les 2 dimensions ext->int (intrusion) et int->int (rebond)
-* Limiter les actions internes
-	* Contrôler les activités (infection, relais attaque, baisse productivité)
-	* Limiter les fuites de données (?)
-* Implémenter une politique de flux haut-niveau ("pas de contrôle depuis l'extérieur") sur des éléments de protocole ("pas de connexion TCP entrante", "pas de paquet contenant une signature connue d'attaque", etc.) (implique évidemment une simplification/incomplétude)
+	* Sur les 2 dimensions extérieur->intérieur (intrusion) et intérieur->intérieur (pivot)
+* Surveiller : Détecter pour analyse ou réaction
+	* Protéger une prochaine fois, analyser le chemin
+	* Découvrir les ressources qui ont été impactées
+	* Problème de confidentialité ou d'intégrité ?
+	* Ex Yahoo, 3 milliards de comptes, détecté 3 ans plus tard ; Facebook 2018 ; [discours G. Poupard DG ANSSI aux Assises 2019](https://twitter.com/lsamain/status/1181872739495370753)
 
-La terminologie est floue !
+
+La terminologie des classes d'outils est floue et les limites entre les cases sont poreuses ! Évidemment, ce flou et la grande variété de mécanisme et d'actions entretiennent un marché des _appliances_ pas toujours sain, régulièrement conçus à base de [poudre verte](https://poudreverte.org/). L'objectif de ce cours est de découvrir les mécanismes fondamentaux pour pouvoir appréhender l'analyse critique des outils disponibles.
 
 
 Axes d'étude
@@ -25,31 +27,39 @@ Axes d'étude
 
 Inspecter des paquets selon les axes d'étude :
 
-* Filtre/Alerte :
-	* Le filtre protège
-	* L'alerte ne protège pas, mais reste très pertinente : risque de se reproduire, on ne sait pas ce qui est impacté, réagir, conf ou int ? Obligation légale/commerciale (RGPD). Savoir qu'une intrusion a eu lieu, quel service, quelles données. Ex Yahoo, 3 milliards de comptes, 3 ans plus tard ; Facebook 2018 ; [discours G. Poupard DG ANSSI aux Assises 2019](https://twitter.com/lsamain/status/1181872739495370753)
+* Filtre/Alerte
 * Niveau OSI
 * Contexte pré/post/pas
 * Ingress/Egress
 * Politique locale/globale/mixte
-* Périmétrique/Interne
+* Périmétrique ou "discret"/Diffus
+
+
+| Classe | Niveau | Contexte | Filtrant | In/Out | Local/Global | Périmétrique |
+|--------|--------|----------|----------|--------|--------------|--------------|
+| Firewall | *4* | Pré | Oui | In+Out | Local | Oui |
+| IDS | *7* | Oui | *Non* | In | *Global* | Non |
+| IPS | *7* | Oui | *Réaction* | In | *Global* | Non |
+| RProxy | *7* | Oui | *Oui* | In+Out | Global | *Non |
+| DPI | *7* | Pré | *Oui* | In+Out | *Local* | Oui |
+| DCI | *7* | *Oui* | Oui | *In+Out* | Local+Global | Oui |
+
 
 Firewall
 ======
 
-* Segmentation, délimitation de zones WAN/LAN/DMZ
+* Segmentation, délimitation de zones (WAN/LAN/DMZ, WAN/DMZ/LAN1/LAN2/LAN3/ADMIN/...)
 * Règles locales
 * Ouverture d'une liste de services contrôlés, diminution de la surface d'attaque, matrice de flux
 * Layer 4
 * 1 service = 1 port
-* Stateless ou stateful
 * Ex iptables/nftables
 * TP2 !
 
 Modèles :
 
-* Historique : WAN/LAN/DMZ, DMZ tampon, LAN à plat
-* Moderne : Segmentation plus fine du LAN, éviter propagation (vers, pivot)
+* Historique : WAN/LAN/DMZ, DMZ tampon, LAN à plat (à proscrire)
+* Moderne : Segmentation plus fine du LAN, éviter propagation (vers, pivot, ransomware aujourd'hui)
 
 
 IDS
@@ -107,7 +117,7 @@ DCI
 * Reverse proxy sur tous les protocoles
 * En entrée de réseau
 * Analyse objets de haut niveau (JS, exe, bytecode java, ...)
-* Voit tout, critique, rapide. Risque ? cf Fireeye 12/2015, vuln dans la "VM" Java (box d'analyse bytecode java)
+* Voit tout, critique, rapide. Risque ? cf [Fireeye 12/2015](https://googleprojectzero.blogspot.com/2015/12/fireeye-exploitation-project-zeros.html), vuln dans la "VM" Java (box d'analyse bytecode, java) ou [F5 BIG-IP en 2020](https://www.cert.ssi.gouv.fr/alerte/CERTFR-2020-ALE-015/).
 
 
 
