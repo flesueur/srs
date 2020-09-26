@@ -10,7 +10,7 @@ Qu'est-ce que la sécu ? CIA. Qu'est-ce que "faire de la sécu" ? Opérer une in
 Déroulement
 ===========
 
-<audio controls="true" src="media/introsrs.mp3"></audio>
+<audio controls="true" src="media/introsrs.mp3">[introsrs.mp3](media/introsrs.mp3)</audio>
 
 Lire et comprendre le README qui détaille le déroulé de la matière (mais normalement, si vous êtes là, vous l'avez déjà fait...)
 
@@ -18,7 +18,7 @@ Lire et comprendre le README qui détaille le déroulé de la matière (mais nor
 Quelques actualités de la sécurité
 ==============
 
-<audio controls src="media/attaques2020.mp3"></audio>
+<audio controls src="media/attaques2020.mp3">[attaques2020.mp3](media/attaques2020.mp3)</audio>
 
 Passer 30 minutes/1 heure pour faire un petit tour d'actualités de votre choix (vous verrez, il y a bien des russes, des chinois et des états-uniens comme promis !)
 
@@ -83,9 +83,9 @@ Passer 30 minutes/1 heure pour faire un petit tour d'actualités de votre choix 
 Quelques réflexions plus ou moins personnelles
 ===============
 
-Contexte général : <audio controls src="media/introsecu2.mp3"></audio>
+Contexte général : <audio controls src="media/introsecu2.mp3">[introsecu2.mp3](media/introsecu2.mp3)</audio>
 
-Menaces et risque : <audio controls src="media/risques.mp3"></audio>
+Menaces et risque : <audio controls src="media/risques.mp3">[risques.mp3](media/risques.mp3)</audio>
 
 
 * Outillage/vulns de très simple (script kiddie) à élitiste (nation-sponsored, 0days)
@@ -97,9 +97,9 @@ Menaces et risque : <audio controls src="media/risques.mp3"></audio>
 Enjeux et acteurs
 ===============
 
-Les acteurs : <audio controls src="media/acteurs.mp3"></audio>
+Les acteurs : <audio controls src="media/acteurs.mp3">[acteurs.mp3](media/acteurs.mp3)</audio>
 
-Exemple d'enjeu : <audio controls src="media/enjeux.mp3"></audio>
+Exemple d'enjeu : <audio controls src="media/enjeux.mp3">[enjeux.mp3](media/enjeux.mp3)</audio>
 
 
 * Les organisations (se protéger)
