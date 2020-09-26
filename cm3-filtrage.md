@@ -35,14 +35,14 @@ Inspecter des paquets selon les axes d'étude : <audio controls src="media/axes.
 * Périmétrique ou "discret"/Diffus
 
 
-| Classe | Niveau | Contexte | Filtrant | In/Out | Local/Global | Périmétrique |
+| Classe | Niveau | Contexte | Filtrant | In/Out | Local/Global | Discret/Diffus |
 |--------|--------|----------|----------|--------|--------------|--------------|
-| Firewall | *4* | Pré | Oui | In+Out | Local | Oui |
-| IDS | *7* | Oui | *Non* | In | *Global* | Non |
-| IPS | *7* | Oui | *Réaction* | In | *Global* | Non |
-| RProxy | *7* | Oui | *Oui* | In+Out | Global | *Non |
-| DPI | *7* | Pré | *Oui* | In+Out | *Local* | Oui |
-| DCI | *7* | *Oui* | Oui | *In+Out* | Local+Global | Oui |
+| Firewall | *4* | Pré | Oui | In+Out | Local | Discret |
+| IDS | *7* | Oui | *Non* | In | *Global* | Diffus |
+| IPS | *7* | Oui | *Réaction* | In | *Global* | Discret |
+| RProxy | *7* | Oui | *Oui* | In+Out | Global | Discret |
+| DPI | *7* | Pré | *Oui* | In+Out | *Local* | Discret |
+| DCI | *7* | *Oui* | Oui | *In+Out* | Local+Global | Discret |
 
 
 Firewall
