@@ -5,7 +5,7 @@ _François Lesueur ([francois.lesueur@insa-lyon.fr](mailto:francois.lesueur@insa
 Buts
 ====
 
-<audio controls src="media/filtrageintro.mp3"></audio>
+<audio controls src="media/filtrageintro.mp3">[filtrageintro.mp3](media/filtrageintro.mp3)</audio>
 
 * Filtrer : Protéger le SI
 	* Diminuer la surface d'attaque
@@ -81,7 +81,7 @@ IDS (Intrusion Detection System)
 * Deux approches :
 	* Scénario : motifs, modéliser le mal, le plus courant, bien évidemment facile à contourner
 	* Comportement : modéliser le bien par spécification ou apprentissage (sur quelle base ? puis évolution, risque de déviation)
-* Ex [snort](https://fr.wikipedia.org/wiki/Snort), [suricata](https://en.wikipedia.org/wiki/Suricata_(software), [Prelude](https://fr.wikipedia.org/wiki/Prelude_SIEM), [Elastic](https://fr.wikipedia.org/wiki/Elasticsearch)
+* Ex [snort](https://fr.wikipedia.org/wiki/Snort), [suricata](https://en.wikipedia.org/wiki/Suricata_(software)), [Prelude](https://fr.wikipedia.org/wiki/Prelude_SIEM), [Elastic](https://fr.wikipedia.org/wiki/Elasticsearch)
 * TP3 !
 
 ![blocklists](media/blocklists.jpg)
