@@ -25,7 +25,7 @@ Une solution simple malheureusement trop peu appliquée par les attaquants : [l'
 Axes d'étude
 ======
 
-Inspecter des paquets selon les axes d'étude : <audio controls src="media/axes.mp3"></audio>
+Inspecter des paquets selon les axes d'étude : <audio controls src="media/axes.mp3">[axes.mp3](media/axes.mp3)</audio>
 
 * Filtre/Alerte
 * Niveau OSI
@@ -48,7 +48,7 @@ Inspecter des paquets selon les axes d'étude : <audio controls src="media/axes.
 Firewall
 ======
 
-<audio controls src="media/firewall.mp3"></audio>
+<audio controls src="media/firewall.mp3">[firewall.mp3](media/firewall.mp3)</audio>
 
 
 * Segmentation, délimitation de zones (WAN/LAN/DMZ, WAN/DMZ/LAN1/LAN2/LAN3/ADMIN/...)
@@ -68,13 +68,13 @@ Modèles :
 IDS (Intrusion Detection System)
 ================================
 
-<audio controls src="media/ids.mp3"></audio>
+<audio controls src="media/ids.mp3">[ids.mp3](media/ids.mp3)</audio>
 
 * Alertes, détecter pour réagir !
 * Layer 7, dissecteurs de haut niveau
 * Regexps, performances relâchées car offline
 * Sondes internes, remontée, corrélation (diminuer le bruit, améliorer la pertinence)
-* Apparition du concept de faux positifs et faux négatifs : <audio controls src="media/specsecu.mp3"></audio>
+* Apparition du concept de faux positifs et faux négatifs : <audio controls src="media/vraisfaux.mp3">[vraisfaux.mp3](media/vraisfaux)</audio>
 
 ![false](media/falsealerts.jpg)
 
@@ -96,7 +96,7 @@ Modèle de déploiement :
 IPS (Intrusion Prevention System)
 =================================
 
-<audio controls src="media/ids.mp3"></audio>
+<audio controls src="media/ips.mp3">[ips.mp3](media/ips.mp3)</audio>
 
 
 Un IDS avec la possibilité de bloquer. Un firewall de niveau 7 ? Challenges :
@@ -109,7 +109,7 @@ Un IDS avec la possibilité de bloquer. Un firewall de niveau 7 ? Challenges :
 Reverse proxy
 =======
 
-<audio controls src="media/rproxy.mp3"></audio>
+<audio controls src="media/rproxy.mp3">[rproxy.mp3](media/rproxy.mp3)</audio>
 
 Interfaçage de couche 7 dédié à un protocole :
 
