@@ -2,9 +2,6 @@
 
 _François Lesueur ([francois.lesueur@insa-lyon.fr](mailto:francois.lesueur@insa-lyon.fr), [@FLesueur](https://twitter.com/FLesueur))_
 
-ATTENTION, NON FINALISÉ !
-=========================
-
 Buts
 ====
 
