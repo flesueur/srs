@@ -46,3 +46,9 @@ Les CM : [CM1 (Introduction)](cm1-introduction.md) / [CM2 (Vulnérabilités)](cm
 Les TP : [TP1 (Intrusion)](tp1-intrusion.md) / [TP2 (Firewall)](tp2-firewall.md) / [TP3 (IDS)](tp3-ids.md)
 
 Les articles des années précédentes : [2017](https://medium.com/insa-tc/secu2017/home) / [2018](https://medium.com/insa-tc/tagged/secu2018) / [2019](https://medium.com/insa-tc/tagged/secu2019)
+
+
+Licence
+=======
+
+![https://creativecommons.org/licenses/by-nc-sa/2.0/fr/](https://i.creativecommons.org/l/by-nc-sa/2.0/fr/88x31.png) L'intégralité de ce dépôt est mis à disposition selon les termes de la [Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 2.0 France](https://creativecommons.org/licenses/by-nc-sa/2.0/fr/).
