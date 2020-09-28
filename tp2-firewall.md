@@ -13,7 +13,7 @@ Vous devez vous connecter à la VM en root/root. MI-LXC est déjà installé et 
 
 > Dans la VM et sur les machines MI-LXC, vous pouvez installer des logiciels supplémentaires. Par défaut, vous avez mousepad pour éditer des fichiers de manière graphique. La VM peut être affichée en plein écran. Si cela ne fonctionne pas, il faut parfois changer la taille de fenêtre manuellement, en tirant dans l'angle inférieur droit, pour que VirtualBox détecte que le redimensionnement automatique est disponible. Il y a une case adéquate (taille d'écran automatique) dans le menu écran qui doit être cochée. Si rien ne marche, c'est parfois en redémarrant la VM que cela peut se déclencher. Mais il *faut* la VM en plein écran.
 
-Avant de commencer le TP, vous devez lire le chapitre [Netfilter](https://fr.wikibooks.org/wiki/Administration_r%C3%A9seau_sous_Linux/Netfilter) du Wikibooks "Administration Réseau sous Linux".
+Avant de commencer le TP, vous devez lire le chapitre [Netfilter](https://fr.wikibooks.org/wiki/Administration_r%C3%A9seau_sous_Linux/Netfilter) du Wikilivre "Administration Réseau sous Linux".
 
 >Note 1 : Pour les plus aventuriers, il est possible d'utiliser nftables, le successeur d'iptables. Quelques infos de démarrage sont proposées [ici](https://wiki.nftables.org/wiki-nftables/index.php/Simple_rule_management)
 
@@ -21,9 +21,10 @@ Avant de commencer le TP, vous devez lire le chapitre [Netfilter](https://fr.wik
 
 Topologie du routeur
 ====================
+
 Connectez-vous sur la machine "target-router" : `./mi-lxc.py attach target-router`
 
-Puis regardez sa configuration réseau avec notamment ses deux interfaces (à quoi servirait un routeur avec une seule...) "eth0" et "eth1", par ex. avec `ifconfig` ou `ip addr`. Identifiez laquelle se situe côté interne et externe de l'entreprise et notez l'adresse IP de chacune.
+Puis regardez sa configuration réseau avec notamment ses deux interfaces (à quoi servirait un routeur avec une seule...) "eth0" et "eth1", par exemple avec `ifconfig` ou `ip addr`. Identifiez laquelle se situe côté interne et laquelle côté externe de l'entreprise et notez l'adresse IP de chacune.
 
 Protection de la machine firewall
 =================================
@@ -66,10 +67,10 @@ Priorité des règles
 
 Un même paquet peut correspondre à plusieurs règles de filtrage, éventuellement contradictoires : Netfilter applique les règles dans l'ordre et choisit systématiquement la première règle correspondant au paquet (attention, certains firewalls procèdent dans le sens contraire tandis que celui de Windows ne prend pas en compte l'ordre...). On parle alors de masquage de règles.
 
-Afin de tester ce comportement, nous allons utiliser les paramètres de filtrage de la [section "Critères" du Wikibooks](https://fr.wikibooks.org/wiki/Administration_r%C3%A9seau_sous_Linux/Netfilter#Crit%C3%A8res).
+Afin de tester ce comportement, nous allons utiliser les paramètres de filtrage de la [section "Critères" du Wikilivre](https://fr.wikibooks.org/wiki/Administration_r%C3%A9seau_sous_Linux/Netfilter#Crit%C3%A8res).
 
 * Montrez sur un exemple que l'ordre des règles compte. Pour modifier le filtrage, vous aurez besoin de supprimer des règles et d'en ajouter à des endroits spécifiques : référez-vous au manuel d'iptables.
-* Mettez en place un jeu de règles autorisant le SSH sur le routeur uniquement depuis le LAN de l'entreprise.
+* Mettez en place un jeu de règles autorisant le SSH sur le routeur uniquement depuis le LAN de l'entreprise (testable depuis la machine "target-admin" par exemple).
 
 Dans la pratique, le masquage est souvent utilisé volontairement pour spécifier un cas général peu prioritaire et des cas particuliers plus prioritaires. Évidemment, c'est également source d'erreurs dans ces cas complexes.
 
@@ -182,7 +183,7 @@ Vous avez pu vous rendre compte de la complexité du réglage manuel du pare-feu
 
 De nombreuses solutions ont été développées pour faciliter la gestion des règles iptables. Nous allons ici utiliser Shorewall. Shorewall n'est pas un démon et repose entièrement sur iptables. Il consiste en une série de scripts permettant de simplifier la configuration, notamment en définissant la notion de zones. Sur "target-router", installez shorewall (`apt-get install shorewall`) puis réimplémentez votre politique de sécurité avec cet outil.
 
-_Note : Pour les plus aventuriers, il est possible d'expérimenter firewalld : outil plus moderne_
+_Note : Pour les plus aventuriers, il est possible d'expérimenter firewalld, un outil plus moderne_
 
 FTP
 ---
