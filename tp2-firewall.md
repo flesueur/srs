@@ -134,7 +134,8 @@ Votre description (matrice de flux sous forme tabulaire avec les machines source
 
 __Faites valider votre matrice de flux (tabulaire ou graphique, pas des commandes iptables) par l'enseignant.__
 
-> Exemple de matrice de flux qui pourrait correspondre aux 2 zones initiales (insuffisante, donc, et attention ce n'est pas ça qui est implémenté par l'iptables initial) :
+> Ci-dessous un exemple de matrice de flux qui pourrait correspondre aux 2 zones initiales (insuffisante, donc, et attention ce n'est pas ça qui est implémenté par l'iptables initial) :
+>
 >   src\dst  |      ext           |     int                      |
 |-----------|--------------------|-------------------------------|
 |    ext    |      X             | SMTP(S),IMAP(S),HTTP(S),DNS   |
