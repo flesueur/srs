@@ -120,6 +120,13 @@ L'objectif d'une politique de sécurité réseau est de limiter les services acc
 2. Identification des services réseau portés, et accédés, par chaque machine
 3. Définition des flux réseau autorisés entre zones en fonction des besoins identifiés précédemment (par défaut, tout doit être interdit puis les services souhaités sont explicitement autorisés). Ceci constitue la "matrice de flux"
 
+> Ci-dessous un exemple de matrice de flux qui pourrait correspondre aux 2 zones initiales (insuffisante, donc, et attention ce n'est pas ça qui est implémenté par l'iptables initial) :
+>
+> |   src\dst  |      ext           |     int                      |
+> |:----------:|:------------------:|:----------------------------:|
+> |    ext     |      X             | SMTP(S),IMAP(S),HTTP(S),DNS  |
+> |   int      |    tout            |        X                     |
+
 Décrivez sur papier une politique de sécurité réseau raisonnable pour le SI complet de l'entreprise. À vous d'explorer le SI à partir des éléments suivants sur les machines :
 
 * DMZ fournit un ensemble de services à l'interface entre le SI et le reste du monde
@@ -133,13 +140,6 @@ Les noms des conteneurs peuvent être affichés avec `./mi-lxc.py` (sans paramè
 Votre description (matrice de flux sous forme tabulaire avec les machines sources en lignes et destinations en colonnes et services autorisés dans les cases, ou graphique) doit être claire et suffisamment précise pour être non ambiguë : un autre étudiant, avec cette description uniquement, devrait pouvoir refaire _exactement_ la même implémentation avec iptables.
 
 __Faites valider votre matrice de flux (tabulaire ou graphique, pas des commandes iptables) par l'enseignant.__
-
-> Ci-dessous un exemple de matrice de flux qui pourrait correspondre aux 2 zones initiales (insuffisante, donc, et attention ce n'est pas ça qui est implémenté par l'iptables initial) :
->
-> |   src\dst  |      ext           |     int                      |
-> |:----------:|:------------------:|:----------------------------:|
-> |    ext     |      X             | SMTP(S),IMAP(S),HTTP(S),DNS  |
-> |   int      |    tout            |        X                     |
 
 
 Implémentation
