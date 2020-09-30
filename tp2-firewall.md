@@ -137,9 +137,9 @@ __Faites valider votre matrice de flux (tabulaire ou graphique, pas des commande
 > Ci-dessous un exemple de matrice de flux qui pourrait correspondre aux 2 zones initiales (insuffisante, donc, et attention ce n'est pas ça qui est implémenté par l'iptables initial) :
 >
 > |   src\dst  |      ext           |     int                      |
-> |-----------|--------------------|-------------------------------|
-> |    ext    |      X             | SMTP(S),IMAP(S),HTTP(S),DNS   |
-> |   int    |    tout            |       X                        |
+> |:----------:|:------------------:|:----------------------------:|
+> |    ext     |      X             | SMTP(S),IMAP(S),HTTP(S),DNS  |
+> |   int      |    tout            |        X                     |
 
 
 Implémentation
