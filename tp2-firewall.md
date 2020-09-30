@@ -26,12 +26,17 @@ Protection de la machine firewall
 Nous allons maintenant mettre en place un firewall sur la machine target-router. En utilisant la page de manuel d'iptables, affichez l'ensemble des règles actives. Vous devriez voir quelque chose qui ressemble à :
 
 ```
-Chain INPUT (policy ACCEPT 819K packets, 170M bytes)
-pkts bytes target prot opt in out source destination
-Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
-pkts bytes target prot opt in out source destination
-Chain OUTPUT (policy ACCEPT 728K packets, 188M bytes)
-pkts bytes target prot opt in out source destination
+Chain FORWARD (policy DROP 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 ACCEPT     all  --  eth0   eth1    0.0.0.0/0            100.80.1.2          
+    0     0 ACCEPT     all  --  eth0   eth1    0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+    0     0 ACCEPT     all  --  eth1   eth0    0.0.0.0/0            0.0.0.0/0           
+
+Chain INPUT (policy ACCEPT 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
 ```
 
 Vous voyez donc pour chaque chaîne :
@@ -89,6 +94,8 @@ Le module state définit plusieurs états possibles pour les flux réseaux, dont
 * NEW : c'est une nouvelle connexion
 * ESTABLISHED : cette connexion est déjà connue (elle est passée par l'état NEW il y a peu de temps)
 * RELATED : cette connexion est liée ou dépendante d'une connexion déjà ESTABLISHED. Attention, seul le premier paquet d'une connexion peut être RELATED, les suivants sont ESTABLISHED. Essentiellement utilisé pour le protocole FTP.
+
+Par exemple, la règle déjà existante dans la chaîne FORWARD : `    0     0 ACCEPT     all  --  eth0   eth1    0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED` signifie que seulement les paquets `RELATED` ou `ESTABLISHED` sont autorisés de `eth0` vers `eth1`, ie, seules les "réponses" peuvent passer dans ce sens.
 
 Créez une règle pour autoriser, en sortie du Firewall, uniquement les réponses à des connexions SSH entrantes.
 
