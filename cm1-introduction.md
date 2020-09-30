@@ -37,6 +37,7 @@ Passer 30 minutes/1 heure pour faire un petit tour d'actualités de votre choix 
 * Zerologon CVE-2020-1472
 * PulseSecure [details](https://www.securityweek.com/pulse-secure-vpn-vulnerability-exploited-deliver-ransomware)
 * Emotet (ransomware) [details](https://www.cert.ssi.gouv.fr/alerte/CERTFR-2020-ALE-019/)
+* Altran (ransomware) [details](https://www.lemondeinformatique.fr/actualites/lire-cyberextorsion-contre-altran-un-cout-estime-a-20-meteuro-74492.html)
 
 2019
 --------
