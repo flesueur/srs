@@ -2,7 +2,7 @@
 
 _François Lesueur ([francois.lesueur@insa-lyon.fr](mailto:francois.lesueur@insa-lyon.fr))_
 
-Ce TP sera réalisé dans la VM MI-LXC disponible [ici](https://filesender.renater.fr/?s=download&token=48a9bf06-d3a3-4cc1-857a-a23c9513568d). L'infrastructure déployée simule plusieurs postes dont un SI d'entreprise (firewall, DMZ, intranet, authentification centralisée, serveur de fichiers, quelques postes de travail internes de l'entreprise _Target_), une machine d'attaquant "isp-a-hacker" et quelques autres servant à l'intégration de l'ensemble.
+Ce TP sera réalisé dans la VM MI-LXC disponible [ici](https://filesender.renater.fr/?s=download&token=d6af4d45-5e41-4cde-accd-c377812ba285). L'infrastructure déployée simule plusieurs postes dont un SI d'entreprise (firewall, DMZ, intranet, authentification centralisée, serveur de fichiers, quelques postes de travail internes de l'entreprise _Target_), une machine d'attaquant "isp-a-hacker" et quelques autres servant à l'intégration de l'ensemble.
 
 > Pour les curieux, le code de MI-LXC, qui sert à générer cette VM automatiquement, est disponible avec une procédure d'installation documentée [ici](https://github.com/flesueur/mi-lxc)
 
