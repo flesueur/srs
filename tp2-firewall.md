@@ -118,7 +118,7 @@ L'objectif d'une politique de sécurité réseau est de limiter les services acc
 
 1. Création de zones réseau logiques via des sous-réseaux
 2. Identification des services réseau portés, et accédés, par chaque machine
-3. Définition des flux réseau autorisés entre zones en fonction des besoins identifiés précédemment. Ceci constitue la "matrice de flux"
+3. Définition des flux réseau autorisés entre zones en fonction des besoins identifiés précédemment (par défaut, tout doit être interdit puis les services souhaités sont explicitement autorisés). Ceci constitue la "matrice de flux"
 
 Décrivez sur papier une politique de sécurité réseau raisonnable pour le SI complet de l'entreprise. À vous d'explorer le SI à partir des éléments suivants sur les machines :
 
@@ -134,6 +134,12 @@ Votre description (matrice de flux sous forme tabulaire avec les machines source
 
 __Faites valider votre matrice de flux (tabulaire ou graphique, pas des commandes iptables) par l'enseignant.__
 
+> Exemple de matrice de flux qui pourrait correspondre aux 2 zones initiales (insuffisante, donc, et attention ce n'est pas ça qui est implémenté par l'iptables initial) :
+>   src\dst  |      ext           |     int                      |
+|-----------|--------------------|-------------------------------|
+|    ext    |      X             | SMTP(S),IMAP(S),HTTP(S),DNS   |
+|   int    |    tout            |       X                        |
+
 
 Implémentation
 --------------
@@ -143,7 +149,7 @@ Implémentez votre matrice de flux sur la machine "target-router". Vous aurez be
 
 * Segmenter le réseau "target" ([tuto vidéo](https://videos.insa-lyon.net/videos/?video=MEDIA200922084649790) sans son) :
 	* Éditer `global.json` (dans le dossier mi-lxc) pour spécifier les interfaces sur le routeur, dans la section "target". Il faut ajouter des bridges (dont le nom doit commencer par "target-") et découper l'espace 100.80.0.1/16. Enfin, il faut ajouter les interfaces eth2, eth3... ainsi créées à la liste des `asdev` definie juste au-dessus (avec des ';' de séparation entre interfaces)
-	* Éditer `groups/target/local.json` pour éditer les adresses des interfaces et les bridges des machines internes (attention, pour un bridge nommé précédemment "target-dmz", il faut simplement écrire "dmz" ici, la partie "target-" est ajoutée automatiquement). Dans le même fichier vous devrez aussi mettre à jour les serveurs mentionnés dans les paramètres des templates "ldapclient", "sshfs" et "nodhcp" ou mettre à jour les enregistrements DNS (fichier `/etc/nsd/target.milxc.zone` sur "target-dmz")
+	* Éditer `groups/target/local.json` pour modifier les adresses des interfaces et les bridges des machines internes (attention, pour un bridge nommé précédemment "target-dmz", il faut simplement écrire "dmz" ici, la partie "target-" est ajoutée automatiquement). Dans le même fichier vous devrez aussi mettre à jour les serveurs mentionnés dans les paramètres des templates "ldapclient", "sshfs" et "nodhcp", soit en remplaçant les noms de serveurs par leurs nouvelles adresses IP, soit en mettant à jour les enregistrements DNS correspondants (fichier `/etc/nsd/target.milxc.zone` sur "target-dmz")
 	* Exécuter `./mi-lxc.py print` pour visualiser la topologie redéfinie
 	* Exécuter `./mi-lxc.py stop && ./mi-lxc.py renet && ./mi-lxc.py start` pour mettre à jour l'infrastructure déployée
 * Implémenter de manière adaptée les commandes iptables sur la machine "target-router" (dans la chaîne FORWARD). Si possible dans un script (qui nettoie les règles au début), en cas d'erreur.
