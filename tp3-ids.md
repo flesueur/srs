@@ -2,14 +2,18 @@
 
 _François Lesueur ([francois.lesueur@insa-lyon.fr](mailto:francois.lesueur@insa-lyon.fr))_
 
-Ce TP sera réalisé dans l'infrastructure MI-LXC, disponible [ici](https://github.com/flesueur/mi-lxc) ou dans la VM "tp-sec-debian" disponible en salle de TP (`/machines_virtuelles/secu_vms/master/tp-sec-debian.sh`, root/root). L'infrastructure déployée simule plusieurs postes dont un SI d'entreprise (firewall, DMZ, intranet, authentification centralisée, serveur de fichiers, quelques postes de travail interne), une machine d'attaquant (hacker) et quelques autres servant à l'intégration de l'ensemble.
+Ce TP sera réalisé dans la VM MI-LXC disponible [ici](https://filesender.renater.fr/?s=download&token=d6af4d45-5e41-4cde-accd-c377812ba285). L'infrastructure déployée simule plusieurs postes dont un SI d'entreprise (firewall, DMZ, intranet, authentification centralisée, serveur de fichiers, quelques postes de travail internes de l'entreprise _Target_), une machine d'attaquant "isp-a-hacker" et quelques autres servant à l'intégration de l'ensemble.
 
-* Pour une utilisation sur un poste personnel depuis le dépôt github, la procédure est expliquée dans le README.md.
-* Pour une utilisation dans la VM "tp-sec-debian", MI-LXC est déjà installé et l'infrastructure déployée. Il faut passer root puis aller dans le dossier `/root/mi-lxc`. Ensuite, `./mi-lxc.py start`.
+> Pour les curieux, le code de MI-LXC, qui sert à générer cette VM automatiquement, est disponible avec une procédure d'installation documentée [ici](https://github.com/flesueur/mi-lxc)
 
-Durant ce TP, vous allez analyser un scénario d'attaque et travailler à sa détection par NIDS (Network IDS), HIDS (Host IDS) puis corrélation d'alertes. Les outils utilisés seront Suricata (NIDS), OSSEC (HIDS), Prelude (SIEM et corrélation).
+<!--  ou dans la VM "tp-sec-debian" disponible en salle de TP (`/machines_virtuelles/secu_vms/master/tp-sec-debian.sh`, debian/debian et root/root). L'infrastructure déployée simule plusieurs postes dont un SI d'entreprise (firewall, DMZ, intranet, authentification centralisée, serveur de fichiers, quelques postes de travail interne), une machine d'attaquant (hacker) et quelques autres servant à l'intégration de l'ensemble. La compréhension plus fine du SI de l'entreprise ciblée fait partie des objectifs du TP. -->
+
+
+Vous devez vous connecter à la VM en root/root. MI-LXC est déjà installé et l'infrastructure déployée, il faut avec un terminal aller dans le dossier `/root/mi-lxc`. Pour démarrer l'infrastructure, tapez `./mi-lxc.py start`. Durant ce TP, vous allez analyser un scénario d'attaque et travailler à sa détection par NIDS (Network IDS), HIDS (Host IDS) puis corrélation d'alertes. Les outils utilisés seront Suricata (NIDS), OSSEC (HIDS), Prelude (SIEM et corrélation).
 
 L'architecture réseau et les petits guides de démarrage des outils à manipuler sont à retrouver dans les (nombreuses) annexes (à diagonaliser avant de démarrer, bien sûr) !
+
+> Dans la VM et sur les machines MI-LXC, vous pouvez installer des logiciels supplémentaires. Par défaut, vous avez mousepad pour éditer des fichiers de manière graphique. La VM peut être affichée en plein écran. Si cela ne fonctionne pas, il faut parfois changer la taille de fenêtre manuellement, en tirant dans l'angle inférieur droit, pour que VirtualBox détecte que le redimensionnement automatique est disponible. Il y a une case adéquate (taille d'écran automatique) dans le menu écran qui doit être cochée. Si rien ne marche, c'est parfois en redémarrant la VM que cela peut se déclencher. Mais il *faut* la VM en plein écran.
 
 Analyse de l'attaque
 ====================
@@ -38,7 +42,7 @@ L'infrastructure réseau du SI à surveiller est la suivante :
 
 * router en entrée de réseau
 * ldap, dmz, intranet et filer sont des serveurs internes
-* commercial, dev et admin sont postes clients internes
+* commercial, dev et admin sont des postes clients internes
 
 
 Les logiciels suivants sont pré-installés :
@@ -147,4 +151,3 @@ Enfin, relancez prelude-correlator. Une documentation plus complète est disponi
 
 
 _Crédits : certaines parties ont été inspirées de sujets de [Guillaume Hiet](http://guillaume.hiet.fr/)_
-
