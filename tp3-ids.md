@@ -18,7 +18,13 @@ L'architecture réseau et les petits guides de démarrage des outils à manipule
 Analyse de l'attaque
 ====================
 
-À partir du scénario d'attaque développé dans le TP1, proposez une stratégie de détection mêlant NIDS, HIDS et corrélation. **Faîtes valider cette stratégie par un enseignant !**
+À partir du scénario d'attaque développé dans le TP1, proposez une stratégie de détection mêlant NIDS, HIDS et corrélation. Par exemple :
+
+* Un NIDS (Suricata) est un IDS réseau, tel que vu en cours. Il permet de détecter des motifs dans des paquets réseau
+* Un HIDS (OSSEC) est un IDS hôte, une sonde installée sur une machine. Il permet de surveiller des logs, des apparitions/modifications de fichiers
+* Un corrélateur (Prelude) permet de collecter des alertes variées vers un point unique. Il permet également d'associer des alertes qui correspondent à un même événement vu par plusieurs sondes.
+
+**Faîtes valider cette stratégie par un enseignant !**
 
 Yakafokon
 =========
