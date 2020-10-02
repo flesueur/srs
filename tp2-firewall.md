@@ -142,7 +142,7 @@ Décrivez sur papier une politique de sécurité réseau raisonnable pour le SI 
 * Filer héberge un partage de fichiers qui doit être accessible à tous les postes clients internes
 * Commercial, Dev et Admin sont des postes client. Le commercial doit pouvoir accéder au site web intranet, le développeur doit pouvoir mettre à jour cet intranet et l'admin doit pouvoir administrer l'ensemble du parc
 
-Les noms des conteneurs peuvent être affichés avec `./mi-lxc.py` (sans paramètres), les machines ne commençant pas par "target-" représentent le "reste du monde" (WAN). Le plan d'adressage peut être affiché avec `./mi-lxc.py print`. La commande `netstat -lnptu` permet d'afficher les ports en écoute, et donc les services, sur une machine donnée.
+Les noms des conteneurs peuvent être affichés avec `./mi-lxc.py` (sans paramètres), les machines ne commençant pas par "target-" représentent le "reste du monde" (WAN). Le plan d'adressage peut être affiché avec `./mi-lxc.py print`. La commande `ss -lnptu` permet d'afficher les ports en écoute, et donc les services, sur une machine donnée.
 
 Votre description (matrice de flux sous forme tabulaire avec les machines sources en lignes et destinations en colonnes et services autorisés dans les cases, ou graphique) doit être claire et suffisamment précise pour être non ambiguë : un autre étudiant, avec cette description uniquement, devrait pouvoir refaire _exactement_ la même implémentation avec iptables.
 
