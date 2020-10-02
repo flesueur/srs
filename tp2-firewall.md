@@ -87,7 +87,7 @@ iptables est extensible par un système de modules. Vous trouverez une descripti
 Comment
 -------
 
-Le module `comment`, comme son nom l'indique, permet d'associer un commentaire à une règle afin d'assurer la bonne compréhension par tous des règles en place. Pour utiliser le module:
+Le module `comment`, comme son nom l'indique, permet d'associer un commentaire à une règle afin d'assurer la bonne compréhension par tous des règles en place. Pour utiliser le module :
 `iptables -A INPUT -m comment --comment "Ceci est un commentaire" -j...`
 
 Multiport
