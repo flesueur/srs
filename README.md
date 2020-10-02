@@ -41,7 +41,7 @@ L'évaluation porte sur l'écriture de l'article de blog, qui mobilise les comp�
 * Temps de lecture environ 5-8 minutes (temps donné par Medium)
 * Écriture encadrée sur 3 séances. À chaque séance encadrée (sur le créneau edt ou sur un créneau proche, selon disponibilité des encadrants), vous aurez un temps d'échange (environ 10-15 minutes) avec l'encadrant référent du binôme. Le reste de la séance (ainsi que quelques heures en dehors des séances) est dédié au travail sur cet article.
 * Jalons :
-  * 02/10 -> Dépôt du binôme + thème/mots-clés
+  * 02/10 -> Dépôt du binôme + thème/mots-clés (-1 par semaine de retard entamée)
   * 05/10 -> Séance encadrée 1
     * En début de séance : thème/mots-clés + quelques sources.
     * En fin de séance : un article bien cadré, le futur contenu est périmétré, adapté au temps de travail disponible et réalisable avec des sources publiques
