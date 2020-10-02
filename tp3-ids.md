@@ -145,7 +145,7 @@ Jumelage avec le manager : `prelude-admin register prelude-correlator "idmef:rw"
 Une règle de corrélation est en fait un script python. Vous trouverez un exemple dans `/usr/share/doc/prelude-correlator/examples`. Pour l'installer, tapez :
 
 * `python setup.py build`
-* ̀`python setup.py install`
+* `python setup.py install`
 
 Puis dans `/etc/prelude-correlator/prelude-correlator.conf`, ajoutez :
 ```
