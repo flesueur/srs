@@ -84,13 +84,18 @@ Modules iptables
 
 iptables est extensible par un système de modules. Vous trouverez une description des modules existants dans le manuel de "iptables-extensions".
 
+Comment
+-------
+
+Le module `comment`, comme son nom l'indique, permet d'associer un commentaire à une règle afin d'assurer la bonne compréhension par tous des règles en place. Pour utiliser le module:
+`iptables -A INPUT -m comment --comment "Ceci est un commentaire" -j...`
+
 Multiport
 ---------
 
 Le module multiport permet de créer une règle unique correspondant à plusieurs ports (plutôt que plusieurs règles) : `iptables -A INPUT -m multiport -p tcp --dports port1,port2,port3 -j...`
 
-Créez une règle avec multiport autorisant les ports 22 et 53.
-
+Créez une règle avec multiport autorisant les ports 22 et 53. N'hésitez pas à ajouter un commentaire pour y voir plus clair (plusieurs modules peuvent être utilisés simultanément).
 
 Suivi de connexion ("state")
 ----------------------------
