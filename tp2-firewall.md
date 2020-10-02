@@ -110,7 +110,9 @@ Le module "state" définit plusieurs états possibles pour les flux réseau, don
 
 Par exemple, la règle déjà existante dans la chaîne FORWARD : `    0     0 ACCEPT     all  --  eth0   eth1    0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED` signifie que seulement les paquets `RELATED` ou `ESTABLISHED` sont autorisés de `eth0` vers `eth1`, ie, seules les "réponses" peuvent passer dans ce sens.
 
-Créez une règle pour autoriser, en sortie du firewall, uniquement les réponses à des connexions SSH entrantes.
+Pour voir l'effet de la question suivante, tout d'abord bloquez tout en sortie avec cette politique : `iptables -P OUTPUT DROP`
+
+Puis créez une règle pour autoriser, en sortie du firewall, uniquement les réponses à des connexions SSH entrantes (à destination du service SSH sur le firewall).
 
 
 Mise en place d'une politique de sécurité réseau
