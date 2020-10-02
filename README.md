@@ -33,7 +33,27 @@ Ainsi :
 Évaluation
 ==========
 
-L'évaluation porte sur l'écriture de l'article de blog, qui mobilise les compétences enseignées dans l'ensemble des cours. Plus d'infos à venir.
+L'évaluation porte sur l'écriture de l'article de blog, qui mobilise les compétences enseignées dans l'ensemble du cours. Voici quelques éléments sur la rédaction de cet article :
+
+* Écriture en binôme
+* Sujet sécurité, en lien avec SRS, sur lequel il existe une activité/des actualités sur les quelques dernières années
+* Public cible au choix mais à déterminer au début (de novice à confirmé)
+* Temps de lecture environ 5-8 minutes (temps donné par Medium)
+* Écriture encadrée sur 3 séances. À chaque séance encadrée (sur le créneau edt ou sur un créneau proche, selon disponibilité des encadrants), vous aurez un temps d'échange (environ 10-15 minutes) avec l'encadrant référent du binôme. Le reste de la séance (ainsi que quelques heures en dehors des séances) est dédié au travail sur cet article.
+* Jalons :
+  * 02/10 -> Dépôt du binôme + thème/mots-clés
+  * 05/10 -> Séance encadrée 1
+    * En début de séance : thème/mots-clés + quelques sources.
+    * En fin de séance : un article bien cadré, le futur contenu est périmétré, adapté au temps de travail disponible et réalisable avec des sources publiques
+  * 09/10 -> Séance encadrée 2
+    * En début de séance : un plan détaillé, les références organisées dans ce plan.
+    * En fin de séance : un plan détaillé retravaillé et validé
+  * 19/10 -> Séance encadrée 3
+    * En début de séance : un article rédigé mais en version non définitive
+    * En fin de séance : des commentaires à intégrer avant publication ou publication immédiate
+  * 6/11 -> Date limite de publication sur Medium
+    * Publication implique que l'article est fini et a été _validé_ par l'encadrant (il faut donc le proposer bien avant)
+    * -1 par semaine de retard entamée
 
 
 Pages des cours et TP
