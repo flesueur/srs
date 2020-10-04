@@ -63,7 +63,7 @@ Les logiciels suivants sont pré-installés :
 Suricata (NIDS)
 ---------------
 
-Suricata est un IDPS réseau. Il est installé sur "target-router". Sa configuration est dans `/etc/suricata/suricata.yaml` et nous allons utiliser le fichier de règles `/etc/suricata/rules/local.rules`. Vous pourrez visualiser les alertes dans le fichier de log `/var/log/suricata/fast.log`.
+Suricata est un IDPS réseau. Il est installé sur "target-router". Sa configuration est dans `/etc/suricata/suricata.yaml` et nous allons utiliser le fichier de règles `/etc/suricata/rules/local.rules`. Vous pourrez visualiser les alertes dans le fichier de log `/var/log/suricata/fast.log` (`tail -f /var/log/suricata/fast.log` permet de suivre l'évolution des alertes).
 
 La règle
 ```
@@ -72,20 +72,20 @@ La règle
 
 signifie par exemple que :
 
-* On étudie les paquets TCP allant de `10.0.0.1:80` vers le sous-réseau:port `192.168.1.0/24:111`
+* On étudie les paquets TCP allant de `10.0.0.1:80` vers le sous-réseau:port `192.168.1.0/24:111` (__attention, les règles sont orientées et Suricata regarde les paquets allant de la partie gauche de la règle à la partie droite !__)
 * Contenant la chaîne "Waldo"
 * Le log affichera "Waldo's here" s'il y a une correspondance
 * `alert` peut être remplacé par `drop` pour jeter le paquet au lieu de le journaliser
 * Le `sid` est un identifiant de règle, _il doit être unique_
-* Les règles peuvent être composées de nombreux éléments (contenu, taille, expressions régulières, etc.). Tout est ici : [Règles Suricata](https://suricata.readthedocs.io/en/latest/rules/index.html). `http_stat_code` permet par exemple de surveiller le code de retour HTTP. <!-- \url{http://manual.snort.org/node32.html}) -->
+* Les règles peuvent être composées de nombreux éléments (contenu, taille, expressions régulières, etc.). Tout est ici : [Règles Suricata](https://suricata.readthedocs.io/en/latest/rules/index.html). [`http_stat_code`](https://suricata.readthedocs.io/en/latest/rules/http-keywords.html#http-stat-code) (avec un _ et non un ., attention) permet par exemple de surveiller le code de retour HTTP et [`threshold`](https://suricata.readthedocs.io/en/latest/rules/thresholding.html) de gérér des seuils. <!-- \url{http://manual.snort.org/node32.html}) -->
 
-Lisez les règles présentes dans le fichier `local.rules`. Déclenchez la règle "COMMUNITY WEB-MISC Test Script Access" en accédant au serveur web de la DMZ (http://www.target.mixlc), par ex. depuis la machine `isp-a-hacker`. La requête est-elle exécutée avec succès ?
+Lisez les règles présentes dans le fichier `local.rules`. Déclenchez la règle "COMMUNITY WEB-MISC Test Script Access" en accédant au serveur web de la DMZ (http://www.target.mixlc), par ex. depuis la machine `isp-a-hacker`. La requête est-elle exécutée par le serveur DMZ, malgré l'alerte ?
 
-Analysez ensuite la signature de CodeRed (un ver se propageant via une faille des serveurs web Microsoft IIS). Arrivez-vous à déclencher cette alerte ? Peut-on vraiment parler d'intrusion ? Comment qualifier cette alerte ?
+Analysez ensuite la signature de CodeRed (un ver se propageant via une faille des serveurs web Microsoft IIS). Arrivez-vous à déclencher cette alerte ? Peut-on vraiment parler d'intrusion ou de risque ici ? Comment qualifier cette alerte ?
 
 Pour avoir un aperçu du type de règles fournies par défaut avec Suricata, vous pouvez exécuter `suricata-oinkmaster-updater` qui téléchargera des listes de règles dans `/etc/suricata/rules/*.rules`.
 
-Lorsque vous modifiez les règles, il faut recharger le fichier en relançant le service avec `service suricata restart`.
+Lorsque vous modifiez les règles, il faut recharger le fichier avec `service suricata reload`. Vous pouvez suivre l'activité de Suricata et l'absence d'erreur à l'intégration des règles dans `/var/log/suricata/suricata.log`.
 
 > Dans la configuration préinstallée, Suricata est en écoute seulement (donc "IDS" mais pas "IPS"). D'autres configurations de Suricata permettent de le mettre en interception. Si vous souhaitez tester Suricata en IPS, voici les étapes :
 >
@@ -107,20 +107,20 @@ OSSEC est un HIDS installé sur la machine "target-dmz". Il permet notamment de 
 Les alertes sont dans `/var/ossec/logs/alerts/alerts.log`. Chaque alerte contient un identifiant de règle, qui permet de retrouver la règle originale dans les fichiers `/var/ossec/rules/*.xml`.
 
 ### syscheck
-Le module syscheck est responsable de surveiller les fichiers présents pour détecter leurs modifications ou même les nouveaux (pas activé par défaut). Il se configure dans la section `<syscheck>` de `/var/ossec/etc/ossec.conf`. Lire la [doc](https://ossec.github.io/docs/manual/syscheck/index.html) et cette réponse de [FAQ](https://www.ossec.net/docs/faq/syscheck.html#why-aren-t-new-files-creating-an-alert).
+Le module syscheck est responsable de surveiller les fichiers présents pour détecter leurs modifications ou même les apparitions de nouveaux fichiers (pas activé par défaut). Il se configure dans la section `<syscheck>` de `/var/ossec/etc/ossec.conf`. Lire la [doc](https://ossec.github.io/docs/manual/syscheck/index.html) et cette réponse de [FAQ](https://www.ossec.net/docs/faq/syscheck.html#why-aren-t-new-files-creating-an-alert).
 
 Sur la machine "target-dmz" les fichiers uploadés sur dokuwiki sont stockés dans `/var/lib/dokuwiki/data/media`. Configurez ce qu'il faut comme indiqué précédemment (une option et une règle) pour obtenir une alerte à chaque nouveau fichier sur le wiki.
 
 Attention :
-* dans la configuration du `<directories>` à surveiller il faut désactiver `realtime` explicitement
-* la règle est à ajouter impérativement dans un `<group>`
+* la règle est à ajouter impérativement dans un `<group>` (dans `/var/ossec/rules/local_rules.xml`)
 * syscheck fonctionne grâce à des scans réguliers (très lents pour ne pas impacter le système) et compare les résultats avec la base du précédent scan. Il faut donc attendre que le scan soit passé et cela prend un certain temps... On peut le surveiller dans `/var/ossec/logs/ossec.log`
   * début du scan : "INFO: Starting syscheck database (pre-scan)."
   * fin du scan (peut prendre plusieurs minutes !) : "INFO: Finished creating syscheck database (pre-scan completed)."
+* comme le processus est long, limitez les dossiers à surveiller au strict minimum (désactivez les dossiers par défaut, mettez juste le dossier dokuwiki)
 
 Pour tester vous aurez besoin du mot de passe de l'utilisateur `admin` sur le wiki (cf. TP1) et d'utiliser le "Media Manager".
 
-Plutôt qu'attendre on peut déclencher un re-scan du système avec `service ossec restart` ou `/var/ossec/bin/agent_control -r -u 000`.
+Plutôt qu'attendre on peut déclencher un re-scan du système avec `/var/ossec/bin/agent_control -r -u 000`, mais attention il s'écoule toujours plusieurs (5 ?) minutes entre les scans.
 
 ### logs
 Il est aussi possible d'analyser les logs : [doc](https://ossec.github.io/docs/manual/monitoring/index.html)
@@ -132,7 +132,7 @@ Prelude-manager (concentrateur)
 
 Prelude-manager est un concentrateur d'alertes. Il utilise le format d'alerte IDMEF et Suricata et OSSEC savent lui remonter leurs alertes. Le jumelage entre le manager et les sondes est réalisé via un échange [TLS SRP](https://en.wikipedia.org/wiki/TLS-SRP) géré par `prelude-admin`.
 
-Lors du jumelage, chaque sonde conserve un profil local (`/etc/preludes/profiles/<profile>/` contenant sa configuration et son matériel cryptographique (certificat, clés). Le manager, lui, a signé le certificat (avec sa clé privée) mais ne conserve pas de liste des sondes enregistrées. `prelude-admin list -l` permet de lister les profils actuellement configurés sur la machine locale.
+Lors du jumelage, chaque sonde conserve un profil local (`/etc/preludes/profiles/<profile>/`) contenant sa configuration et son matériel cryptographique (certificat, clés). Le manager, lui, a signé le certificat (avec sa clé privée) mais ne conserve pas de liste des sondes enregistrées. `prelude-admin list -l` permet de lister les profils actuellement configurés sur la machine locale.
 
 Pour jumeler une sonde au manager, il faut :
 
@@ -147,11 +147,11 @@ Pour jumeler une sonde au manager, il faut :
 Prewikka (interface web de visualisation)
 -----------------------------------------
 
-Prewikka est une application web permettant la visualisation de l'état des sondes enregistrées ainsi que des alertes. Il est installé sur la machine Firewall. Il doit être démarré avec `prewikka-httpd` et est ensuite accessible depuis le navigateur d'un poste de travail interne à l'URL `http://router:8000`. Le compte est admin/admin (bien sûr, la première étape dans un vrai déploiement est de changer cela...).
+Prewikka est une application web permettant la visualisation de l'état des sondes enregistrées ainsi que des alertes. Il est installé sur la machine `target-router`. Il doit être démarré avec `prewikka-httpd` et est ensuite accessible depuis le navigateur d'un poste de travail interne (par exemple `target-admin`) à l'URL `http://router:8000`. Le compte est admin/admin (bien sûr, la première étape dans un vrai déploiement est de changer cela...).
 
 Il faut ensuite lancer prelude-manager (sur router) : `service prelude-manager start`.
 
-Par défaut, la liste des agents (les sondes) est vide. Il faut ajouter Suricata (activer prelude dans la configuration suricata `/etc/suricata/suricata.yaml` puis `service suricata restart`) puis OSSEC (activer prelude dans la configuration OSSEC `/var/ossec/etc/ossec.conf` puis `service ossec restart`).
+Par défaut, la liste des agents (les sondes), accessible dans le menu en haut à gauche, est vide. Il faut ajouter Suricata (activer prelude dans la configuration suricata `/etc/suricata/suricata.yaml` en y cherchant la chaîne "prelude" puis `service suricata restart`) puis OSSEC (activer prelude dans la configuration OSSEC `/var/ossec/etc/ossec.conf` en y cherchant la chaîne "prelude" puis `service ossec restart`).
 
 Vous pouvez ensuite visualiser des événements. Si tout n'apparaît pas, quelques restarts de services peuvent faire tomber en marche !
 
