@@ -63,7 +63,7 @@ Les logiciels suivants sont pré-installés :
 Suricata (NIDS)
 ---------------
 
-Suricata est un IDPS réseau. Il est installé sur le routeur. Sa configuration est dans `/etc/suricata/suricata.yaml` et nous allons utiliser le fichier de règles `/etc/suricata/rules/local.rules`. Vous pourrez visualiser le fichier de log `/var/log/suricata/fast.log`.
+Suricata est un IDPS réseau. Il est installé sur "target-router". Sa configuration est dans `/etc/suricata/suricata.yaml` et nous allons utiliser le fichier de règles `/etc/suricata/rules/local.rules`. Vous pourrez visualiser les alertes dans le fichier de log `/var/log/suricata/fast.log`.
 
 La règle
 ```
@@ -75,39 +75,57 @@ signifie par exemple que :
 * On étudie les paquets TCP allant de `10.0.0.1:80` vers le sous-réseau:port `192.168.1.0/24:111`
 * Contenant la chaîne "Waldo"
 * Le log affichera "Waldo's here" s'il y a une correspondance
-* alert peut être remplacé par drop pour jeter le paquet au lieu de le journaliser
-* Le sid est un identifiant de règle, _il doit être unique_
+* `alert` peut être remplacé par `drop` pour jeter le paquet au lieu de le journaliser
+* Le `sid` est un identifiant de règle, _il doit être unique_
 * Les règles peuvent être composées de nombreux éléments (contenu, taille, expressions régulières, etc.). Tout est ici : [Règles Suricata](https://suricata.readthedocs.io/en/latest/rules/index.html). `http_stat_code` permet par exemple de surveiller le code de retour HTTP. <!-- \url{http://manual.snort.org/node32.html}) -->
 
-Lisez les règles présentes dans le fichier `local.rules`. Déclenchez la règle "COMMUNITY WEB-MISC Test Script Access" en accédant au serveur web de la DMZ. La requête est-elle exécutée avec succès ?
+Lisez les règles présentes dans le fichier `local.rules`. Déclenchez la règle "COMMUNITY WEB-MISC Test Script Access" en accédant au serveur web de la DMZ (http://www.target.mixlc), par ex. depuis la machine `isp-a-hacker`. La requête est-elle exécutée avec succès ?
 
 Analysez ensuite la signature de CodeRed (un ver se propageant via une faille des serveurs web Microsoft IIS). Arrivez-vous à déclencher cette alerte ? Peut-on vraiment parler d'intrusion ? Comment qualifier cette alerte ?
 
-Pour avoir un aperçu du type de règles fournies par défaut avec Suricata, vous pouvez exécuter `suricata-oinkmaster-updater` qui téléchargera des listes de règles dans `/etc/suricata/rules/emerging-*.rules`.
+Pour avoir un aperçu du type de règles fournies par défaut avec Suricata, vous pouvez exécuter `suricata-oinkmaster-updater` qui téléchargera des listes de règles dans `/etc/suricata/rules/*.rules`.
 
-Lorsque vous modifiez les règles, il faut recharger le fichier avec  `service suricata restart`.
+Lorsque vous modifiez les règles, il faut recharger le fichier en relançant le service avec `service suricata restart`.
 
-
-> Dans la configuration préinstallée, Suricata est en écoute seulement (pas IPS). D'autres configurations de Suricata permettent de le mettre en interception. Si vous souhaitez tester Suricata en IPS, voici les étapes :
+> Dans la configuration préinstallée, Suricata est en écoute seulement (donc "IDS" mais pas "IPS"). D'autres configurations de Suricata permettent de le mettre en interception. Si vous souhaitez tester Suricata en IPS, voici les étapes :
 >
 > * `cp /lib/systemd/system/suricata.service  /etc/systemd/system/suricata.service`
 > * Remplacer `--af-packet` par `-q0` dans `/etc/systemd/system/suricata.service`
-> * Utiliser `drop` au lieu de `alert` dans les règles
 > * Recharger systemd `systemctl daemon-reload`
+> * Utiliser `drop` au lieu de `alert` dans les règles
 > * `service suricata restart`
 >
-> Pour activer ensuite le passage par Suricata dans la configuration installée, il faut ajouter une décision NFQUEUE au lieu des décision ACCEPT dans les règles IPTables. Par exemple, pour faire passer par Suricata tout le trafic forwardé :
-`iptables -I FORWARD -j NFQUEUE` (attention, suricata prend des décisions définitives, le reste des règles n'est pas appelé ensuite ! Une solution plus évoluée utilisant les marques et le mode repeat de Suricata est présentée [ici](https://docs.mirantis.com/mcp/latest/mcp-security-best-practices/use-cases/idps-vnf/ips-mode/nfq.html))
+> Pour ensuite activer le passage des paquets par Suricata, il faut ajouter une décision NFQUEUE au lieu des décision ACCEPT dans les règles IPTables. Par exemple, pour faire passer par Suricata tout le trafic forwardé :
+`iptables -I FORWARD -j NFQUEUE` (attention, suricata prend des décisions définitives, le reste des règles n'est pas appelé ensuite ! [Une solution plus évoluée utilisant les marques et le mode repeat de Suricata existe.](https://docs.mirantis.com/mcp/latest/mcp-security-best-practices/use-cases/idps-vnf/ips-mode/nfq.html))
 
 
 
 OSSEC (HIDS)
 ------------
+OSSEC est un HIDS installé sur la machine "target-dmz". Il permet notamment de surveiller les logs (dont accès/refus d'accès du serveur web) et les fichiers présents sur la machine. Sa configuration se trouve dans `/var/ossec/etc/ossec.conf`.
 
-OSSEC est un HIDS installé sur la machine DMZ. Il permet notamment de surveiller les logs (dont accès/refus d'accès du serveur web) et les fichiers présents sur la machine. Sa configuration se trouve dans `/var/ossec/etc/ossec.conf`.
+Les alertes sont dans `/var/ossec/logs/alerts/alerts.log`. Chaque alerte contient un identifiant de règle, qui permet de retrouver la règle originale dans les fichiers `/var/ossec/rules/*.xml`. 
 
-La partie `syscheck` est responsable de surveiller les fichiers présents (doc [ici](https://ossec.github.io/docs/manual/syscheck/index.html), FAQ [ici](https://www.ossec.net/docs/faq/syscheck.html#why-aren-t-new-files-creating-an-alert) avec la règle à ajouter impérativement dans un `<group>`), il est aussi possible d'analyser les logs (doc [ici](https://ossec.github.io/docs/manual/monitoring/index.html)). Attention pour syscheck, la surveillance d'apparition de nouveaux fichiers (non présente par défaut, il faut ajouter une option et une règle, tout est détaillé sur la page de doc) nécessite de désactiver `realtime` explicitement. Pour utiliser syscheck, il faut attendre que la surveillance soit prête (cela prend un certain temps au démarrage), à surveiller dans `/var/ossec/logs/ossec.log`. Les alertes sont ensuite dans `/var/ossec/logs/alerts/alerts.log`. Chaque alerte contient un identifiant de règle, qui permet de retrouver la règle originale dans les fichiers `/var/ossec/rules/*`. Il est possible d'utiliser `service ossec restart` / `/var/ossec/bin/agent_control -r -id 000` pour déclencher un re-scan du système.
+### syscheck
+Le module syscheck est responsable de surveiller les fichiers présents pour détecter leurs modifications ou même les nouveaux (pas activé par défaut). Il se configure dans la section `<syscheck>` de `/var/ossec/etc/ossec.conf`. Lire la [doc](https://ossec.github.io/docs/manual/syscheck/index.html) et cette réponse de [FAQ](https://www.ossec.net/docs/faq/syscheck.html#why-aren-t-new-files-creating-an-alert).
 
+Sur la machine "target-dmz" les fichiers uploadés sur dokuwiki sont stockés dans `/var/lib/dokuwiki/data/media`. Configurez ce qu'il faut comme indiqué précédemment (une option et une règle) pour obtenir une alerte à chaque nouveau fichier sur le wiki.
+
+Attention :
+* dans la configuration du `<directories>` à surveiller il faut désactiver `realtime` explicitement
+* la règle est à ajouter impérativement dans un `<group>`
+* syscheck fonctionne grâce à des scans réguliers (très lents pour ne pas impacter le système) et compare les résultats avec la base du précédent scan. Il faut donc attendre que le scan soit passé et cela prend un certain temps... On peut le surveiller dans `/var/ossec/logs/ossec.log`
+  * début du scan : "INFO: Starting syscheck database (pre-scan)."
+  * fin du scan (peut prendre plusieurs minutes !) : "INFO: Finished creating syscheck database (pre-scan completed)."
+
+Pour tester vous aurez besoin du mot de passe de l'utilisateur `admin` sur le wiki (cf. TP1) et d'utiliser le "Media Manager".
+
+Plutôt qu'attendre on peut déclencher un re-scan du système avec `service ossec restart` ou `/var/ossec/bin/agent_control -r -id 000` (ignorer l'erreur à propos de "client.keys").
+
+### logs
+Il est aussi possible d'analyser les logs : [doc](https://ossec.github.io/docs/manual/monitoring/index.html)
+
+Relancez depuis la machine "isp-a-hacker" le bruteforce sur le mot de passe de l'admin du wiki avec la commande : `python3 tp/intrusion/dokuwiki.py www.target.milxc` et observez les alertes OSSEC.
 
 Prelude-manager (concentrateur)
 -------------------------------
