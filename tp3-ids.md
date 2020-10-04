@@ -104,7 +104,7 @@ OSSEC (HIDS)
 ------------
 OSSEC est un HIDS installé sur la machine "target-dmz". Il permet notamment de surveiller les logs (dont accès/refus d'accès du serveur web) et les fichiers présents sur la machine. Sa configuration se trouve dans `/var/ossec/etc/ossec.conf`.
 
-Les alertes sont dans `/var/ossec/logs/alerts/alerts.log`. Chaque alerte contient un identifiant de règle, qui permet de retrouver la règle originale dans les fichiers `/var/ossec/rules/*.xml`. 
+Les alertes sont dans `/var/ossec/logs/alerts/alerts.log`. Chaque alerte contient un identifiant de règle, qui permet de retrouver la règle originale dans les fichiers `/var/ossec/rules/*.xml`.
 
 ### syscheck
 Le module syscheck est responsable de surveiller les fichiers présents pour détecter leurs modifications ou même les nouveaux (pas activé par défaut). Il se configure dans la section `<syscheck>` de `/var/ossec/etc/ossec.conf`. Lire la [doc](https://ossec.github.io/docs/manual/syscheck/index.html) et cette réponse de [FAQ](https://www.ossec.net/docs/faq/syscheck.html#why-aren-t-new-files-creating-an-alert).
@@ -120,7 +120,7 @@ Attention :
 
 Pour tester vous aurez besoin du mot de passe de l'utilisateur `admin` sur le wiki (cf. TP1) et d'utiliser le "Media Manager".
 
-Plutôt qu'attendre on peut déclencher un re-scan du système avec `service ossec restart` ou `/var/ossec/bin/agent_control -r -id 000` (ignorer l'erreur à propos de "client.keys").
+Plutôt qu'attendre on peut déclencher un re-scan du système avec `service ossec restart` ou `/var/ossec/bin/agent_control -r -u 000`.
 
 ### logs
 Il est aussi possible d'analyser les logs : [doc](https://ossec.github.io/docs/manual/monitoring/index.html)
