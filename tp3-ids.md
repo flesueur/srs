@@ -72,7 +72,7 @@ La règle
 
 signifie par exemple que :
 
-* On étudie les paquets TCP allant de `10.0.0.1:80` vers le sous-réseau:port `192.168.1.0/24:111` (__attention, les règles sont orientées et Suricata regarde les paquets allant de la partie gauche de la règle à la partie droite !__)
+* On étudie les paquets TCP allant de `10.0.0.1:80` vers le sous-réseau:port `192.168.1.0/24:111` (__attention, les règles sont orientées et Suricata regarde uniquement les paquets allant de la partie gauche de la règle à la partie droite !__)
 * Contenant la chaîne "Waldo"
 * Le log affichera "Waldo's here" s'il y a une correspondance
 * `alert` peut être remplacé par `drop` pour jeter le paquet au lieu de le journaliser
