@@ -67,7 +67,7 @@ Suricata est un IDPS réseau. Il est installé sur "target-router". Sa configura
 
 La règle
 ```
- alert tcp 10.0.0.1 80 -> 192.168.1.0/24 111 (content:"Waldo"; msg:"Waldo's here";sid:1001)
+ alert tcp 10.0.0.1 80 -> 192.168.1.0/24 111 (content:"Waldo"; msg:"Waldo's here";sid:1001;)
 ```
 
 signifie par exemple que :
