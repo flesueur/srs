@@ -1,6 +1,7 @@
 # Cours de 5TC-SRS : Sécurité des Réseaux et des Systèmes
 
 _François Lesueur ([francois.lesueur@insa-lyon.fr](mailto:francois.lesueur@insa-lyon.fr), [@FLesueur](https://twitter.com/FLesueur))_
+
 Équipe 2020 : [Walid Bechkit (INSA Lyon)](https://perso.citi-lab.fr/wbechkit/), [Hugo Delval (HashBang)](https://twitter.com/HugoDelval), [Clément Notin](https://clement.notin.org), [Sébastien Mériot (OVHCloud)](mailto:sebastien.meriot@ovhcloud.com).
 
 <!-- Structure du cours 4TC-CSC
