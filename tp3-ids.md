@@ -79,7 +79,7 @@ signifie par exemple que :
 * Le `sid` est un identifiant de règle, _il doit être unique_
 * Les règles peuvent être composées de nombreux éléments (contenu, taille, expressions régulières, etc.). Tout est ici : [Règles Suricata](https://suricata.readthedocs.io/en/latest/rules/index.html). [`http_stat_code`](https://suricata.readthedocs.io/en/latest/rules/http-keywords.html#http-stat-code) (avec un _ et non un ., attention) permet par exemple de surveiller le code de retour HTTP et [`threshold`](https://suricata.readthedocs.io/en/latest/rules/thresholding.html) de gérér des seuils. <!-- \url{http://manual.snort.org/node32.html}) -->
 
-Lisez les règles présentes dans le fichier `local.rules`. Déclenchez la règle "COMMUNITY WEB-MISC Test Script Access" en accédant au serveur web de la DMZ (http://www.target.mixlc), par ex. depuis la machine `isp-a-hacker`. La requête est-elle exécutée par le serveur DMZ, malgré l'alerte ?
+Lisez les règles présentes dans le fichier `local.rules`. Déclenchez la règle "COMMUNITY WEB-MISC Test Script Access" en accédant au serveur web de la DMZ (http://www.target.milxc), par ex. depuis la machine `isp-a-hacker`. La requête est-elle exécutée par le serveur DMZ, malgré l'alerte ?
 
 Analysez ensuite la signature de CodeRed (un ver se propageant via une faille des serveurs web Microsoft IIS). Arrivez-vous à déclencher cette alerte ? Peut-on vraiment parler d'intrusion ou de risque ici ? Comment qualifier cette alerte ?
 
