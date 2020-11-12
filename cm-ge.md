@@ -1,4 +1,4 @@
-# CM1 - Introduction
+# CM GE - Introduction à la sécurité numérique
 
 _François Lesueur ([francois.lesueur@insa-lyon.fr](mailto:francois.lesueur@insa-lyon.fr), [@FLesueur](https://twitter.com/FLesueur))_
 
@@ -77,8 +77,9 @@ Sécurité = Confidentialité, Intégrité, Disponibilité : <audio controls src
 
 Les spécificités de la sécurité : <audio controls src="media/specsecu.mp3">[specsecu.mp3](media/specsecu.mp3)</audio>
 
+<!--
 Sécu défensive et sécu offensive (dans le respect de la loi, bien évidemment) : <audio controls src="media/defoff.mp3">[defoff.mp3](media/defoff.mp3)</audio>
-
+-->
 
 Notion de vulnérabilité
 ================
@@ -86,7 +87,7 @@ Notion de vulnérabilité
 Qu'est-ce qu'une vulnérabilité ?
 
 * Vulnérabilités : partout, toujours, dans plusieurs états (connues et patchées, connues et non patchées, non connues du grand public et non patchées, non connues et non patchées)
-* No disclosure, Full disclosure, Responsible disclosure ([Politique Google P0](https://googleprojectzero.blogspot.com/2020/01/policy-and-disclosure-2020-edition.html), [resp fail](https://gadgets.ndtv.com/laptops/news/google-project-zero-microsoft-windows-10-zero-day-exploit-vulnerability-symcrypt-2053185)) <audio controls src="media/disclosure.mp3">[disclosure.mp3](media/disclosure.mp3)</audio>
+<!-- * No disclosure, Full disclosure, Responsible disclosure ([Politique Google P0](https://googleprojectzero.blogspot.com/2020/01/policy-and-disclosure-2020-edition.html), [resp fail](https://gadgets.ndtv.com/laptops/news/google-project-zero-microsoft-windows-10-zero-day-exploit-vulnerability-symcrypt-2053185)) <audio controls src="media/disclosure.mp3">[disclosure.mp3](media/disclosure.mp3)</audio> -->
 * Cycle de vie d'une vulnérabilité : Vidéo (Graphisme de Gabriel Augendre [gabriel@augendre.info], 5TC 2018, CC-BY 4.0) <video controls src="media/cycledevie.mp4" width="1170" height="538">[cycledevie.mp4](media/cycledevie.mp4)</video>
 
 <!-- ![Cycle de vie (Graphisme de Gabriel Augendre [gabriel@augendre.info] CC-BY 4.0](cycle-de-vie.png)
