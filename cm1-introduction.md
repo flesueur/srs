@@ -69,8 +69,8 @@ Passer 30 minutes/1 heure pour faire un petit tour d'actualités de votre choix 
 -----
 
 * Hack (?) Ethereum
-* WannaCry ( motivations mystérieuses, répétition ? Arrêt Renault, St Gobain, Merck)
-* NotPetya ( Ukraine, Maersk, Tchernobyl. Répétition ? Supply chain attack bien ancrée. Sacrifié ? étonnant, autre accès encore ?)
+* WannaCry ( motivations mystérieuses, répétition ? Arrêt Renault, Merck)
+* NotPetya ( Ukraine, Maersk, St Gobain, Tchernobyl. Répétition ? Supply chain attack bien ancrée. Sacrifié ? étonnant, autre accès encore ?)
 * Mirai
 * Equifax (143 mio noms/prénoms/SSN/num carte/date naissance pour phishing/usurpation/récup authentif)
 * Pacemaker
