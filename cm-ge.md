@@ -4,12 +4,12 @@ _François Lesueur ([francois.lesueur@insa-lyon.fr](mailto:francois.lesueur@insa
 
 
 
-Quelques actualités de la sécurité
+Quelques événements de la sécurité
 ==============
 
-Passer 30 minutes/1 heure pour faire un petit tour d'actualités de votre choix
+Passer 30 minutes pour faire un petit tour d'événements de votre choix
 
-Actualité pas que récente mais orientée "sécurité industrielle", à discuter de vive voix sur la visio
+Événements orientés "sécurité industrielle", à discuter de vive voix sur la visio
 -------------------------------
 
 * Stuxnet, 2010, conçu par US+Israël pour s'attaquer aux centrifugeuses iraniennes (programme nucléaire) [détails](https://fr.wikipedia.org/wiki/Stuxnet)
@@ -18,7 +18,7 @@ Actualité pas que récente mais orientée "sécurité industrielle", à discute
 * Un rapport Kaspersky [ici](https://ics.kaspersky.com/media/Kaspersky_ARC_ICS-2020-Trend-Report.pdf), en ouverture optionnelle, à lire plus tard pour approfondir si souhaité
 
 
-Actualités de la sécurité numérique 2020
+Actualités de la sécurité numérique 2020 (moins prioritaire que les événements de sécu industrielle)
 ----
 
 <audio controls src="media/attaques2020.mp3">[attaques2020.mp3](media/attaques2020.mp3)</audio>
