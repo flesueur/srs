@@ -81,6 +81,8 @@ Les spécificités de la sécurité : <audio controls src="media/specsecu.mp3">[
 Sécu défensive et sécu offensive (dans le respect de la loi, bien évidemment) : <audio controls src="media/defoff.mp3">[defoff.mp3](media/defoff.mp3)</audio>
 -->
 
+(Ici, objectif minimum pour ce cours. Étudier la notion de vulnérabilité si le temps le permet)
+
 Notion de vulnérabilité
 ================
 
