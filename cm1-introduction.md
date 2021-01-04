@@ -39,6 +39,7 @@ Passer 30 minutes/1 heure pour faire un petit tour d'actualités de votre choix 
 * Emotet (ransomware) [details](https://www.cert.ssi.gouv.fr/alerte/CERTFR-2020-ALE-019/)
 * Altran (ransomware) [details](https://www.lemondeinformatique.fr/actualites/lire-cyberextorsion-contre-altran-un-cout-estime-a-20-meteuro-74492.html)
 * SolarWind/FireEye (supply-chain) [details](https://www.fireeye.com/blog/threat-research/2020/12/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor.html)
+<!-- https://twitter.com/cglyer/status/1345100676385431553 -->
 
 2019
 --------
